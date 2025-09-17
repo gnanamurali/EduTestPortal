@@ -1,0 +1,32 @@
+# Eclipse project files
+.classpath
+.project
+.settings/
+
+# Build output
+/bin/
+/target/
+/build/
+
+# Logs
+*.log
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Java
+*.class
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+
+# IDE specific
+.vscode/
+.idea/
+
+# Ignore Maven/Gradle cache (if you add later)
+.mvn/
+.gradle/
