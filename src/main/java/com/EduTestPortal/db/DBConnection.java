@@ -19,7 +19,7 @@ public class DBConnection {
 			System.out.println("Database connection established");	
 		} 
 		catch (ClassNotFoundException e) {
-			System.out.println("Mysql driver not found");
+			System.out.println("Mysql driver not found :"+e.getMessage());
 			e.printStackTrace();
 		}
 		catch (SQLException e) {
