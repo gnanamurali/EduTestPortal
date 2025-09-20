@@ -182,3 +182,61 @@ Redirected to success JSP.
 
 
 
+
+
+#### **Day 4(19-09-25)**
+
+
+
+
+
+###### **Student Login**
+
+
+
+Created login.jsp with email + password form.
+
+
+
+Implemented LoginServlet using StudentDAO.getStudentByEmail().
+
+
+
+Fixed password check (.equals() instead of ==).
+
+
+
+Added null-checks to avoid NullPointerException.
+
+
+
+Successful login → session created, user forwarded to studentDashboard.jsp.
+
+
+
+###### **Student Dashboard**
+
+
+
+Built studentDashboard.jsp to greet student by name.
+
+
+
+Used JSP EL ${currentStudent.name} instead of scriptlets → clean MVC.
+
+
+
+###### **Logout Functionality**
+
+
+
+Added logout link in dashboard header.
+
+
+
+Created Logout servlet: invalidates session and redirects to login.jsp.
+
+
+
+Verified that after logout, dashboard can’t be accessed without logging in again.
+
