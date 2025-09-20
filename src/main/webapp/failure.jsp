@@ -7,6 +7,6 @@
 <title>Failed</title>
 </head>
 <body>
-	Adding student failed
+	Adding  failed
 </body>
 </html>

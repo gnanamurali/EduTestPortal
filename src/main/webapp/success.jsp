@@ -7,6 +7,6 @@
 <title>Success</title>
 </head>
 <body>
-	added student successfully
+	added  successfully
 </body>
 </html>

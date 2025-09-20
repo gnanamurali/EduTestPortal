@@ -13,7 +13,7 @@
 		<input type="text" id="userName" name="userName"><br><br>
         
         <label for="userEmail">Email:</label>
-        <input type="text" id="userEmail" name="userEmail"><br><br>
+        <input type="email" id="userEmail" name="userEmail" required><br><br>
         
         <label for="userPhone">Phone:</label>
         <input type="text" id="userPhone" name="userPhone"><br><br>
