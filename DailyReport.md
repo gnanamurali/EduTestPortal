@@ -240,3 +240,73 @@ Created Logout servlet: invalidates session and redirects to login.jsp.
 
 Verified that after logout, dashboard can’t be accessed without logging in again.
 
+
+
+
+
+#### **Day 5 (20-09-25)**
+
+
+
+###### **Teacher DAO**
+
+
+
+Implemented addTeacher() to insert teacher details into DB.
+
+
+
+Implemented getTeacherByEmail() to fetch teacher by email.
+
+
+
+Added extractTeacher() helper for clean mapping from ResultSet.
+
+
+
+Teacher Registration
+
+
+
+Created teacherRegister.jsp form (name, email, phone, password, subject).
+
+
+
+Implemented RegisterTeacherServlet to handle form submission.
+
+
+
+Tested registration → data inserted successfully.
+
+
+
+###### **Teacher Login**
+
+
+
+Created teacherLogin.jsp form (email, password).
+
+
+
+Implemented LoginTeacherServlet using DAO for validation.
+
+
+
+On success → session created and forwarded to dashboard.
+
+
+
+On failure → error message shown and returned to login.
+
+
+
+###### **Teacher Dashboard**
+
+
+
+Built teacherDashboard.jsp greeting with ${currentTeacher.name}.
+
+
+
+Added logout link in header → redirects via existing Logout servlet.
+
