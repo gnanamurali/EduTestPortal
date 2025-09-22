@@ -15,8 +15,9 @@
 <title>Create new quiz ${currentTeacher.name}</title>
 </head>
 <body>
+	${message}<br>
 	<h1>New quiz by ${currentTeacher.name}</h1>
-	<form action="" method="post">
+	<form action="createQuiz" method="post">
         <label for="quizSub">Quiz Subject:</label>
         <input type="text" name="quizSubject" value="${currentTeacher.subject}" readonly ><br><br>
 

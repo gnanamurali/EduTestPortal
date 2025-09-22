@@ -47,5 +47,36 @@ public class QuizDAO {
 		return -1;
 	}
 	
+	public boolean assignQuizToBatch(int qid,String[] batch) 
+	{
+		String insertQuery="INSERT INTO QUIZ_BATCHES(QID,BATCH) VALUES (?,?)";
+		try(Connection con=DBConnection.getConnection();
+			PreparedStatement ps=con.prepareStatement(insertQuery);) 
+		{
+			for(String b : batch)
+			{
+				ps.setInt(1,qid);
+				ps.setString(2,b);
+				ps.executeUpdate();
+			}
+			return true;
+			
+		} 
+		catch(SQLException e)
+		{
+			System.out.println("[QuizDAO] Database error:"+e.getMessage());
+			e.printStackTrace();
+		}
+			
+		catch (Exception e) 
+		{
+			
+			System.out.println("[QuizDAO] Some error occured :"+e.getMessage());
+			e.printStackTrace();
+		}
+		return false;
+		
+		
+	}
 
 }

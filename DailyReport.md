@@ -310,3 +310,71 @@ Built teacherDashboard.jsp greeting with ${currentTeacher.name}.
 
 Added logout link in header → redirects via existing Logout servlet.
 
+
+
+
+
+### **Day 6 (22-09-25)**
+
+
+
+
+
+###### **Teacher Module – Create Quiz:**
+
+
+
+Built createQuiz.jsp with session check, quiz title, subject (auto-filled), and batch checkboxes (B1, B2, B3).
+
+
+
+###### **Implemented CreateQuizServlet with full flow:**
+
+
+
+Reads quiz data and batches from form.
+
+
+
+Validates teacher session.
+
+
+
+Inserts quiz into QUIZZES using QuizDAO.addQuiz().
+
+
+
+Assigns batches using QuizDAO.assignQuizToBatch().
+
+
+
+Handles success, failure, and no-batch scenarios separately.
+
+
+
+###### **Verified all conditions:**
+
+
+
+Quiz created + batches assigned → success.
+
+
+
+Quiz created + no batch selected → success.
+
+
+
+Quiz created but batch assignment failed → error handled.
+
+
+
+Quiz creation failed → error handled.
+
+
+
+Debugged using an empty viewQuizzes.jsp as a landing page to confirm flow.
+
+
+
+Confirmed rows inserted correctly in QUIZZES and QUIZ\_BATCHES.
+
