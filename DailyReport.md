@@ -182,3 +182,131 @@ Redirected to success JSP.
 
 
 
+
+
+#### **Day 4(19-09-25)**
+
+
+
+
+
+###### **Student Login**
+
+
+
+Created login.jsp with email + password form.
+
+
+
+Implemented LoginServlet using StudentDAO.getStudentByEmail().
+
+
+
+Fixed password check (.equals() instead of ==).
+
+
+
+Added null-checks to avoid NullPointerException.
+
+
+
+Successful login → session created, user forwarded to studentDashboard.jsp.
+
+
+
+###### **Student Dashboard**
+
+
+
+Built studentDashboard.jsp to greet student by name.
+
+
+
+Used JSP EL ${currentStudent.name} instead of scriptlets → clean MVC.
+
+
+
+###### **Logout Functionality**
+
+
+
+Added logout link in dashboard header.
+
+
+
+Created Logout servlet: invalidates session and redirects to login.jsp.
+
+
+
+Verified that after logout, dashboard can’t be accessed without logging in again.
+
+
+
+
+
+#### **Day 5 (20-09-25)**
+
+
+
+###### **Teacher DAO**
+
+
+
+Implemented addTeacher() to insert teacher details into DB.
+
+
+
+Implemented getTeacherByEmail() to fetch teacher by email.
+
+
+
+Added extractTeacher() helper for clean mapping from ResultSet.
+
+
+
+Teacher Registration
+
+
+
+Created teacherRegister.jsp form (name, email, phone, password, subject).
+
+
+
+Implemented RegisterTeacherServlet to handle form submission.
+
+
+
+Tested registration → data inserted successfully.
+
+
+
+###### **Teacher Login**
+
+
+
+Created teacherLogin.jsp form (email, password).
+
+
+
+Implemented LoginTeacherServlet using DAO for validation.
+
+
+
+On success → session created and forwarded to dashboard.
+
+
+
+On failure → error message shown and returned to login.
+
+
+
+###### **Teacher Dashboard**
+
+
+
+Built teacherDashboard.jsp greeting with ${currentTeacher.name}.
+
+
+
+Added logout link in header → redirects via existing Logout servlet.
+
