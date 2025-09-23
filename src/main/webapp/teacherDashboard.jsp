@@ -8,9 +8,13 @@
 </head>
 <body>
 	<header style="text-align:right;"><a href="logout">Logout</a></header>
-	<h1>hello teacher ${currentTeacher.name}</h1>
+	<h1>Hello ${currentTeacher.name}</h1><br><br>
+	<h2>Quiz Management</h2><br>
 <div class="quizButtons">
-	<a href="createQuiz.jsp">Create a New Quiz</a>
+<ul>
+	<li><a href="createQuiz.jsp">Create a New Quiz</a></li>
+	<li><a href="viewQuizzes">View your Quizzes</a></li>
+</ul>
 </div>
 </body>
 </html>

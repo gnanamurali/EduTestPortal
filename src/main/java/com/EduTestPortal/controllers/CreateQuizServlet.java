@@ -21,8 +21,7 @@ public class CreateQuizServlet  extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
 	{
-		PrintWriter out =resp.getWriter();
-		resp.setContentType("text/html");
+		
 		String quiztitle=req.getParameter("quizTitle");
 		String quizsubject=req.getParameter("quizSubject");
 		String batch[]=req.getParameterValues("batch");
@@ -48,23 +47,23 @@ public class CreateQuizServlet  extends HttpServlet{
 			if(assignQuiz==true)
 			{
 				System.out.println("[CreateQuizServlet] Quiz Created and batches assigned successfully");
-				RequestDispatcher rd=req.getRequestDispatcher("/viewQuizzes.jsp");
-				rd.forward(req, resp);
+				session.setAttribute("message", "Quiz created successfully!");
+				resp.sendRedirect("viewQuizzes");
 			}
 			
 			else
 			{
 				System.out.println("[CreateQuizServlet] Created quiz but Couldnt assign batches :some error occured");
-				out.print("<h3 style=color:red>Some error occoured while creating quiz</h3>");
-				RequestDispatcher rd=req.getRequestDispatcher("/createQuiz.jsp");
-				rd.forward(req,resp);
+				req.setAttribute("message", "Quiz created batches not assigned failed.");
+				session.setAttribute("message", "Quiz created successfully,Batches not assigned");
+				resp.sendRedirect("viewQuizzes");
 			}
 		}
 		
 		else if(batch==null && createdQuizId>0)
 		{
 			System.out.println("[CreateQuizServlet] Quiz Created and but batch not mentioned");
-			RequestDispatcher rd=req.getRequestDispatcher("/viewQuizzes.jsp");
+			RequestDispatcher rd=req.getRequestDispatcher("/viewQuizzes");
 			rd.forward(req, resp);
 			
 		}

@@ -378,3 +378,69 @@ Debugged using an empty viewQuizzes.jsp as a landing page to confirm flow.
 
 Confirmed rows inserted correctly in QUIZZES and QUIZ\_BATCHES.
 
+
+
+### **Day 7 (23-09-25)**
+
+
+
+###### **View Quizzes:**
+
+
+
+Implemented QuizDAO.getQuizzesByTeacherId(tid) to fetch all quizzes created by a teacher.
+
+
+
+Built ViewQuizzesServlet (GET) → validates session, fetches quizzes, forwards to viewQuizzes.jsp.
+
+
+
+Created viewQuizzes.jsp with scriptlet loop to display quizzes in a table.
+
+
+
+Added message handling to show success/failure feedback.
+
+
+
+Integrated “View Your Quizzes” link into teacherDashboard.jsp.
+
+
+
+###### **Delete Quiz:**
+
+
+
+Added deleteQuiz(int qid) in QuizDAO with DB cascade support.
+
+
+
+Built DeleteQuizServlet → validates teacher session, deletes quiz, sets success/error message, redirects to View Quizzes.
+
+
+
+Updated viewQuizzes.jsp with Delete links for each quiz row.
+
+
+
+Added JavaScript confirmation popup before delete to prevent accidental removals.
+
+
+
+###### **Debugging \& Fixes:**
+
+
+
+Fixed forward() vs redirect() flow by switching to PRG (Post/Redirect/Get).
+
+
+
+Unified messages into a single message attribute instead of juggling message1.
+
+
+
+Corrected table structure (added <tr>, aligned <th> and <td>).
+
+
+
