@@ -444,3 +444,59 @@ Corrected table structure (added <tr>, aligned <th> and <td>).
 
 
 
+
+
+### **Day 8 (24-09-2025)**
+
+
+
+###### **Quiz Management (Teacher):**
+
+
+
+Added updateQuiz(Quiz quiz) method in QuizDAO.
+
+
+
+Built EditQuizServlet (GET) to load quiz details into edit form.
+
+
+
+Created editQuiz.jsp with pre-filled form for title \& subject.
+
+
+
+Built UpdateQuizServlet (POST) to update quiz and redirect using PRG (Post/Redirect/Get).
+
+
+
+Successfully completed full CRUD for quizzes (Create, Read, Update, Delete).
+
+
+
+Question Management (Teacher) – DAO Layer
+
+
+
+###### **Started work on QuestionDAO.**
+
+###### 
+
+###### **Implemented:**
+
+
+
+addQuestion(Question question) → inserts new question into DB.
+
+
+
+getQuestionsByQuizId(int qid) → fetches all questions for a quiz.
+
+
+
+deleteQuestion(int quesId) → removes a question from DB.
+
+
+
+Confirmed DAO structure and prepared for integration with JSP/Servlets
+

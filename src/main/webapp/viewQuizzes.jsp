@@ -31,7 +31,8 @@
     		    <td><%=q.getTitle() %></td>
     		    <td><%=q.getSubject() %></td>
     		    <td><%=q.getCreatedAt() %></td>
-    		    <td><a href="deleteQuiz?qid=<%=q.getQid()%>" onclick="return confirm('Are you sure you want to delete this quiz?');">
+    		    <td><a href="editQuiz?qid=<%= q.getQid() %>">Edit</a>
+    		    <a href="deleteQuiz?qid=<%=q.getQid()%>" onclick="return confirm('Are you sure you want to delete this quiz?');">
              Delete Quiz</a></td>
         </tr>
     	<%} 

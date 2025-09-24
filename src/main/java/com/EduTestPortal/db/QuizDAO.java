@@ -145,5 +145,74 @@ public class QuizDAO
 		
 	}
 	
+	public boolean updateQuiz(Quiz quiz)
+	{
+		String updateQuery="UPDATE QUIZZES SET TITLE =?, SUBJECT=? WHERE QID=?";
+		try(Connection con=DBConnection.getConnection();
+			PreparedStatement ps=con.prepareStatement(updateQuery);)
+		{
+			ps.setString(1,quiz.getTitle());
+			ps.setString(2,quiz.getSubject());
+			ps.setInt(3, quiz.getQid());
+			int success=ps.executeUpdate();
+			if(success>0)
+			{
+				System.out.println("[QuizDAO] Quiz "+quiz.getQid()+" updated successfully");
+				return true;
+			}
+		}
+		catch(SQLException e)
+		{
+			System.out.println("[QuizDAO] Database error:"+e.getMessage());
+			e.printStackTrace();
+		}
+		catch (Exception e) 
+		{
+			System.out.println("[QuizDAO] Some error occured :"+e.getMessage());
+			e.printStackTrace();
+		}
+		return false;	
+		
+	}
+	
+	
+	public Quiz getQuizById(int qid)
+	{
+		String selectQuery="SELECT * FROM QUIZZES WHERE QID=?";
+		
+		try(Connection con=DBConnection.getConnection();
+				PreparedStatement ps=con.prepareStatement(selectQuery);)
+			{
+				ps.setInt(1,qid);
+				
+				ResultSet rs=ps.executeQuery();
+				if(rs.next())
+				{
+					Quiz quiz = new Quiz();
+					quiz.setQid(rs.getInt("QID"));
+					quiz.setTitle(rs.getString("TITLE"));
+					quiz.setSubject(rs.getString("SUBJECT"));
+					quiz.setTid(rs.getInt("TID"));
+					quiz.setCreatedAt(rs.getTimestamp("CREATED_AT"));
+					System.out.println("[QuizDAO] Quiz details fetched for QID:"+qid);
+					return quiz;
+					
+				}
+				
+				
+			}
+			catch(SQLException e)
+			{
+				System.out.println("[QuizDAO] Database error:"+e.getMessage());
+				e.printStackTrace();
+			}
+			catch (Exception e) 
+			{
+				System.out.println("[QuizDAO] Some error occured :"+e.getMessage());
+				e.printStackTrace();
+			}
+			return null;
+		
+	}
 	
 }
