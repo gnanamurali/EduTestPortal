@@ -32,6 +32,7 @@
     		    <td><%=q.getSubject() %></td>
     		    <td><%=q.getCreatedAt() %></td>
     		    <td><a href="editQuiz?qid=<%= q.getQid() %>">Edit</a>
+    		    <a href="manageQuestions?qid=<%= q.getQid() %>">Manage Questions</a>
     		    <a href="deleteQuiz?qid=<%=q.getQid()%>" onclick="return confirm('Are you sure you want to delete this quiz?');">
              Delete Quiz</a></td>
         </tr>

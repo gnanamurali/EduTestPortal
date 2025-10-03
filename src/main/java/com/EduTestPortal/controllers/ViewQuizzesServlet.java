@@ -30,7 +30,7 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
 	String message = (String) session.getAttribute("message");
 	if (message != null) {
 	    req.setAttribute("message", message);
-	    session.removeAttribute("message"); // clear after one use
+	    session.removeAttribute("message");
 	}
 	
 	Teacher t= (Teacher)session.getAttribute("currentTeacher");

@@ -7,6 +7,15 @@
 <title>Dashboard</title>
 </head>
 <body>
+	<%
+    String msg = (String) session.getAttribute("message");
+    if (msg != null) {
+	%>
+    <p><%= msg %></p>
+	<%
+        session.removeAttribute("message"); 
+    }
+	%>
 	<header style="text-align:right;"><a href="logout">Logout</a></header>
 	<h1>Hello ${currentTeacher.name}</h1><br><br>
 	<h2>Quiz Management</h2><br>

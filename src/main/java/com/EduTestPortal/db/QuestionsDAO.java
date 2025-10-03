@@ -14,8 +14,7 @@ public class QuestionsDAO
 	{
 		String insertQuery="INSERT INTO QUESTIONS (QID, QUE_TEXT, OPT_A, OPT_B, OPT_C, OPT_D, ANSWER) VALUES (?, ?, ?, ?, ?, ?, ?)";
 		try(Connection con=DBConnection.getConnection();
-			PreparedStatement ps=con.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);
-			ResultSet rs=ps.getGeneratedKeys();)
+			PreparedStatement ps=con.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);)
 			{
 				ps.setInt(1,q.getQid());
 				ps.setString(2,q.getQuestionText());
@@ -24,15 +23,17 @@ public class QuestionsDAO
 				ps.setString(5,q.getOptionC());
 				ps.setString(6,q.getOptionD());
 				ps.setString(7,q.getCorrectOption());
-				
 				int success=ps.executeUpdate();
 				if(success>0)
 				{
+					ResultSet rs=ps.getGeneratedKeys();
 					if(rs.next())
 					{
 						System.out.println("[QuestionDAO] Question added successfully");
+						System.out.println("[QuestionDAO] Inserted, generated key = " + rs.getInt(1));
 						return rs.getInt(1);
 					}
+					rs.close();
 					
 				}
 				
@@ -130,6 +131,93 @@ public class QuestionsDAO
 		 	return false;
 			 
 	    }
+	
+	public Question getQuestionById(int queid)
+	{
+		String selectQuery="SELECT * FROM QUESTIONS WHERE QUE_ID = ?;";
+		 try(Connection con=DBConnection.getConnection();
+			PreparedStatement ps=con.prepareStatement(selectQuery);)
+		 {
+			 ps.setInt(1, queid);
+			 ResultSet rs=ps.executeQuery();
+			
+			 if(rs.next())
+			 {
+				 Question q= new Question();
+				 q.setQueId(queid);
+				 q.setQid(rs.getInt("QID"));
+				 q.setQuestionText(rs.getString("QUE_TEXT"));
+				 q.setOptionA(rs.getString("OPT_A"));
+				 q.setOptionB(rs.getString("OPT_B"));
+				 q.setOptionC(rs.getString("OPT_C"));
+				 q.setOptionD(rs.getString("OPT_D"));
+				 q.setCorrectOption(rs.getString("ANSWER"));
+				 return q;
+				 
+			 }
+			
+		 }
+		 
+		 catch(SQLException e)
+			{
+				System.out.println("[QuestionDAO] Database error:"+e.getMessage());
+				e.printStackTrace();
+			}
+					
+		catch (Exception e) 
+		 	{
+					
+				System.out.println("[QuestionDAO] Could not find Question "+queid+": "+e.getMessage());
+				e.printStackTrace();
+			}
+		 	return null;
+			 
+	    }
+	
+	public boolean updateQuestion(Question q)
+	{
+		String updateQuery="UPDATE QUESTIONS SET QUE_TEXT = ?,OPT_A = ?,OPT_B = ?,OPT_C = ?,OPT_D = ?,ANSWER = ? WHERE QUE_ID = ?;";
+		try(Connection con=DBConnection.getConnection();
+			PreparedStatement ps=con.prepareStatement(updateQuery);)
+			{
+				ps.setString(1,q.getQuestionText());
+				ps.setString(2,q.getOptionA());
+				ps.setString(3,q.getOptionB());
+				ps.setString(4,q.getOptionC());
+				ps.setString(5,q.getOptionD());
+				ps.setString(6,q.getCorrectOption());
+				ps.setInt(7, q.getQueId());
+				int update=ps.executeUpdate();
+				
+				if(update>0)
+				{
+					System.out.println("[QuestionDAO] Question :"+q.getQueId()+" updated successfully");
+					return true;
+				}
+			}
+		
+		 catch(SQLException e)
+		{
+			System.out.println("[QuestionDAO] Database error:"+e.getMessage());
+			e.printStackTrace();
+		}
+				
+		catch (Exception e) 
+	 	{
+				
+			System.out.println("[QuestionDAO] Question "+q.getQueId()+" updated: "+e.getMessage());
+			e.printStackTrace();
+		}
+		return false;
+		
+	}
+	
+
+	
+	
+
+		
+	
 		 
 	
 

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.sql.*;
 
+
 import com.EduTestPortal.model.Quiz;
 
 public class QuizDAO 
@@ -195,10 +196,8 @@ public class QuizDAO
 					quiz.setTid(rs.getInt("TID"));
 					quiz.setCreatedAt(rs.getTimestamp("CREATED_AT"));
 					System.out.println("[QuizDAO] Quiz details fetched for QID:"+qid);
-					return quiz;
-					
-				}
-				
+					return quiz;	
+				}	
 				
 			}
 			catch(SQLException e)
@@ -216,3 +215,5 @@ public class QuizDAO
 	}
 	
 }
+	
+	
