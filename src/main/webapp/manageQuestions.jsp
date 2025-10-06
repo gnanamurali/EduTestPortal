@@ -20,7 +20,7 @@
 	<%
         session.removeAttribute("message");
     }
-	%>
+%>
 <c:if test="${empty questionList}">
   <p>No questions found. Click 'Add New Question' to create one.</p>
 </c:if>
