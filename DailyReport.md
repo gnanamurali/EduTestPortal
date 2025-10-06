@@ -310,3 +310,193 @@ Built teacherDashboard.jsp greeting with ${currentTeacher.name}.
 
 Added logout link in header → redirects via existing Logout servlet.
 
+
+
+
+
+### **Day 6 (22-09-25)**
+
+
+
+
+
+###### **Teacher Module – Create Quiz:**
+
+
+
+Built createQuiz.jsp with session check, quiz title, subject (auto-filled), and batch checkboxes (B1, B2, B3).
+
+
+
+###### **Implemented CreateQuizServlet with full flow:**
+
+
+
+Reads quiz data and batches from form.
+
+
+
+Validates teacher session.
+
+
+
+Inserts quiz into QUIZZES using QuizDAO.addQuiz().
+
+
+
+Assigns batches using QuizDAO.assignQuizToBatch().
+
+
+
+Handles success, failure, and no-batch scenarios separately.
+
+
+
+###### **Verified all conditions:**
+
+
+
+Quiz created + batches assigned → success.
+
+
+
+Quiz created + no batch selected → success.
+
+
+
+Quiz created but batch assignment failed → error handled.
+
+
+
+Quiz creation failed → error handled.
+
+
+
+Debugged using an empty viewQuizzes.jsp as a landing page to confirm flow.
+
+
+
+Confirmed rows inserted correctly in QUIZZES and QUIZ\_BATCHES.
+
+
+
+### **Day 7 (23-09-25)**
+
+
+
+###### **View Quizzes:**
+
+
+
+Implemented QuizDAO.getQuizzesByTeacherId(tid) to fetch all quizzes created by a teacher.
+
+
+
+Built ViewQuizzesServlet (GET) → validates session, fetches quizzes, forwards to viewQuizzes.jsp.
+
+
+
+Created viewQuizzes.jsp with scriptlet loop to display quizzes in a table.
+
+
+
+Added message handling to show success/failure feedback.
+
+
+
+Integrated “View Your Quizzes” link into teacherDashboard.jsp.
+
+
+
+###### **Delete Quiz:**
+
+
+
+Added deleteQuiz(int qid) in QuizDAO with DB cascade support.
+
+
+
+Built DeleteQuizServlet → validates teacher session, deletes quiz, sets success/error message, redirects to View Quizzes.
+
+
+
+Updated viewQuizzes.jsp with Delete links for each quiz row.
+
+
+
+Added JavaScript confirmation popup before delete to prevent accidental removals.
+
+
+
+###### **Debugging \& Fixes:**
+
+
+
+Fixed forward() vs redirect() flow by switching to PRG (Post/Redirect/Get).
+
+
+
+Unified messages into a single message attribute instead of juggling message1.
+
+
+
+Corrected table structure (added <tr>, aligned <th> and <td>).
+
+
+
+
+
+### **Day 8 (24-09-2025)**
+
+
+
+###### **Quiz Management (Teacher):**
+
+
+
+Added updateQuiz(Quiz quiz) method in QuizDAO.
+
+
+
+Built EditQuizServlet (GET) to load quiz details into edit form.
+
+
+
+Created editQuiz.jsp with pre-filled form for title \& subject.
+
+
+
+Built UpdateQuizServlet (POST) to update quiz and redirect using PRG (Post/Redirect/Get).
+
+
+
+Successfully completed full CRUD for quizzes (Create, Read, Update, Delete).
+
+
+
+Question Management (Teacher) – DAO Layer
+
+
+
+###### **Started work on QuestionDAO.**
+
+###### 
+
+###### **Implemented:**
+
+
+
+addQuestion(Question question) → inserts new question into DB.
+
+
+
+getQuestionsByQuizId(int qid) → fetches all questions for a quiz.
+
+
+
+deleteQuestion(int quesId) → removes a question from DB.
+
+
+
+Confirmed DAO structure and prepared for integration with JSP/Servlets
+
