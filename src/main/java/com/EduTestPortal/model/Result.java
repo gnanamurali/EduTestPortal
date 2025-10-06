@@ -9,6 +9,9 @@ public class Result {
 	private int sid;
 	private int score;
 	private Timestamp takenAt;
+	private String quizTitle;
+	private String quizSubject;
+
 	
 	
 	public int getRid() {
@@ -41,7 +44,18 @@ public class Result {
 	public void setTakenAt(Timestamp takenAt) {
 		this.takenAt = takenAt;
 	}
-	
+	public String getQuizTitle() {
+		return quizTitle;
+	}
+	public void setQuizTitle(String quizTitle) {
+		this.quizTitle = quizTitle;
+	}
+	public String getQuizSubject() {
+		return quizSubject;
+	}
+	public void setQuizSubject(String quizSubject) {
+		this.quizSubject = quizSubject;
+	}
 	
 	
 

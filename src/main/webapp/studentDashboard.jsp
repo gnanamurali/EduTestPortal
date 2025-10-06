@@ -9,6 +9,8 @@
 </head>
 <body>
 	<header style="text-align:right;"><a href="logout">Logout</a></header>
-	<h1>Welcome ${currentStudent.name}</h1>
+	<h1>Welcome ${currentStudent.name}</h1><br>
+	<a href="availableQuizzes">View Available Quizzes</a>
+	
 </body>
 </html>

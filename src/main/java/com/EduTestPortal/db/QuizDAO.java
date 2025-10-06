@@ -182,7 +182,7 @@ public class QuizDAO
 		String selectQuery="SELECT * FROM QUIZZES WHERE QID=?";
 		
 		try(Connection con=DBConnection.getConnection();
-				PreparedStatement ps=con.prepareStatement(selectQuery);)
+			PreparedStatement ps=con.prepareStatement(selectQuery);)
 			{
 				ps.setInt(1,qid);
 				
@@ -211,6 +211,43 @@ public class QuizDAO
 				e.printStackTrace();
 			}
 			return null;
+		
+	}
+	
+	public List<Quiz> getQuizzesByBatch(String batch)
+	{
+		String selectQuery="SELECT q.* FROM QUIZZES q JOIN QUIZ_BATCHES qb ON q.QID = qb.QID WHERE qb.BATCH = ? ORDER BY q.CREATED_AT DESC;";
+		ArrayList<Quiz> quizzes=new ArrayList<>();
+		try(Connection con=DBConnection.getConnection();
+			PreparedStatement ps=con.prepareStatement(selectQuery);)
+		{
+			ps.setString(1, batch);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next())
+			{
+				Quiz q=new Quiz();
+				q.setQid(rs.getInt("QID"));
+				q.setTitle(rs.getString("TITLE"));
+				q.setSubject(rs.getString("SUBJECT"));
+				q.setCreatedAt(rs.getTimestamp("CREATED_AT"));
+				q.setTid(rs.getInt("TID"));
+				quizzes.add(q);			
+			}
+			System.out.println("[QuizDAO] Quiz details fetched for Batch:"+batch);
+			rs.close();
+			return quizzes;
+		}
+		catch(SQLException e)
+		{
+			System.out.println("[QuizDAO] Database error:"+e.getMessage());
+			e.printStackTrace();
+		}
+		catch (Exception e) 
+		{
+			System.out.println("[QuizDAO] Some error occured :"+e.getMessage());
+			e.printStackTrace();
+		}
+		return Collections.emptyList();
 		
 	}
 	
