@@ -500,3 +500,153 @@ deleteQuestion(int quesId) → removes a question from DB.
 
 Confirmed DAO structure and prepared for integration with JSP/Servlets
 
+
+
+
+
+### **Day 9 (3-10-2025)**
+
+
+
+###### **Question Management (Teacher) – Full Integration**
+
+
+
+Integrated Add Question, Manage Questions, Edit Question, and Delete Question functionalities.
+
+
+
+Implemented AddQuestionServlet (GET + POST):
+
+
+
+GET → verifies teacher authorization and forwards to addQuestion.jsp.
+
+
+
+POST → adds question to DB using QuestionsDAO.addQuestion() and redirects back with success message.
+
+
+
+Built addQuestion.jsp form with fields for question text, options A–D, and correct answer (dropdown).
+
+
+
+Implemented ManageQuestionsServlet to fetch all questions of a quiz and display them in manageQuestions.jsp.
+
+
+
+Added links for Edit and Delete beside each question; integrated confirmation dialog before deletion.
+
+
+
+Added message boxes across JSPs (plain text, no JSTL) to display operation feedback.
+
+
+
+Verified PRG (Post-Redirect-Get) flow and tested session authorization for teachers.
+
+
+
+###### **Delete \& Edit Question**
+
+
+
+Created DeleteQuestionServlet to remove questions securely after ownership validation.
+
+
+
+Created EditQuestionServlet (GET + POST) to load existing question data, allow updates, and save changes.
+
+
+
+Built editQuestion.jsp page pre-populating existing details.
+
+
+
+All question operations tested end-to-end with proper console logs and validation messages.
+
+
+
+### **Day 10 (07-10-2025)**
+
+
+
+###### **Quiz Attempt (Student Module)**
+
+
+
+Implemented AvailableQuizzesServlet → fetches quizzes assigned to student’s batch using QuizDAO.getQuizzesByBatch(batch).
+
+
+
+Created availableQuizzes.jsp to list quizzes in <ul> format with “Start Quiz” link for each quiz.
+
+
+
+Implemented StartQuizServlet (GET) → fetches quiz details + questions and forwards to startQuiz.jsp.
+
+
+
+Built startQuiz.jsp with:
+
+
+
+Quiz details (header).
+
+
+
+Dynamic question display loop using JSTL.
+
+
+
+Radio buttons for options A–D.
+
+
+
+“Previous / Next” buttons controlled via JavaScript and timer-based auto-submit.
+
+
+
+###### **Quiz Submission \& Results**
+
+
+
+Implemented SubmitQuizServlet (POST):
+
+
+
+Calculates score by matching answers with correct options.
+
+
+
+Prevents re-attempt via ResultsDAO.hasAttemptedQuiz() check.
+
+
+
+Saves result using ResultsDAO.saveResult() and forwards to results.jsp.
+
+
+
+Designed results.jsp:
+
+
+
+Displays quiz title, subject, score and percentage.
+
+
+
+Generates a performance-based message (e.g., “Excellent”, “Good effort”).
+
+
+
+Added links to retake another quiz or return to dashboard.
+
+
+
+Added message boxes to availableQuizzes.jsp for attempt status (success/failure).
+
+
+
+Thoroughly tested end-to-end quiz attempt and score storage flow in MySQL results table.
+
