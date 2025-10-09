@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.EduTestPortal.model.QuizStats;
 import com.EduTestPortal.model.Result;
 
 public class ResultsDAO 
@@ -133,6 +134,125 @@ public class ResultsDAO
 
 	    return Collections.emptyList();
 	}
+	
+	public List<Result> getResultsByStudentId(int sid)
+	{
+		String joinQuery="SELECT r.RID, r.SCORE, r.TAKEN_AT, q.QID, q.TITLE, q.SUBJECT FROM RESULTS r JOIN QUIZZES q ON r.QID = q.QID WHERE r.SID = ? ORDER BY r.TAKEN_AT DESC ;";
+		List<Result> studentResult= new ArrayList<Result>();
+		
+		 try (Connection con = DBConnection.getConnection();
+		         PreparedStatement ps = con.prepareStatement(joinQuery))
+		    {
+		        ps.setInt(1, sid);
+		        ResultSet rs = ps.executeQuery();
+		        
+		        while (rs.next())
+		        {
+		            Result r = new Result();
+		            r.setRid(rs.getInt("RID"));
+		            r.setQid(rs.getInt("QID"));
+		            r.setScore(rs.getInt("SCORE"));
+		            r.setTakenAt(rs.getTimestamp("TAKEN_AT"));
+		            r.setSid(sid);
+		            r.setQuizTitle(rs.getString("TITLE"));
+		            r.setQuizSubject(rs.getString("SUBJECT"));
+		            
+		            studentResult.add(r);
+		        }
+		        System.out.println("[ResultsDAO] Results fetched successfully for Student S" + sid);
+		        rs.close();
+		        return studentResult;
+		    }
+		 catch (SQLException e)
+		    {
+		        System.out.println("[ResultsDAO] Database error while fetching results: " + e.getMessage());
+		        e.printStackTrace();
+		    }
+		    catch (Exception e)
+		    {
+		        System.out.println("[ResultsDAO] Some error occurred while fetching results for S" + sid + ": " + e.getMessage());
+		        e.printStackTrace();
+		    }
+
+		    return Collections.emptyList();
+		
+		
+	}
+	
+	public List<Result> getResultsByQuizId(int qid)
+	{
+		String joinQuery="SELECT r.RID, r.SID, s.NAME, s.BATCH, r.SCORE, r.TAKEN_AT FROM RESULTS r JOIN STUDENTS s ON r.SID = s.SID WHERE r.QID = ? ORDER BY r.SCORE DESC;";
+		List<Result> quizresults=new ArrayList<Result>();
+		
+		 try (Connection con = DBConnection.getConnection();
+		      PreparedStatement ps = con.prepareStatement(joinQuery))
+		    {
+			 	ps.setInt(1, qid);
+			 	ResultSet rs=ps.executeQuery();
+			 	
+			 	while(rs.next())
+			 	{
+			 		Result r = new Result();
+			 		 r.setRid(rs.getInt("RID"));
+			         r.setSid(rs.getInt("SID"));
+			         r.setStudentName(rs.getString("NAME"));
+			         r.setStudentBatch(rs.getString("BATCH"));
+			         r.setScore(rs.getInt("SCORE"));
+			         r.setTakenAt(rs.getTimestamp("TAKEN_AT"));
+			         quizresults.add(r);
+			            
+			 	}
+			 	 System.out.println("[ResultsDAO] Results fetched successfully for Quiz Q" + qid);
+			     rs.close();
+			     return quizresults;
+			 	
+		    }
+		 catch (SQLException e)
+		    {
+		        System.out.println("[ResultsDAO] Database error while fetching results: " + e.getMessage());
+		        e.printStackTrace();
+		    }
+		    catch (Exception e)
+		    {
+		        System.out.println("[ResultsDAO] Some error occurred while fetching results for Q" + qid + ": " + e.getMessage());
+		        e.printStackTrace();
+		    }
+
+		    return Collections.emptyList();
+		
+	}
+	
+	public QuizStats getQuizStatistics(int qid) {
+	    String query = "SELECT COUNT(*) AS total, MAX(SCORE) AS maxScore, MIN(SCORE) AS minScore, AVG(SCORE) AS avgScore FROM RESULTS WHERE QID = ?";
+	    QuizStats stats = new QuizStats();
+
+	    try (Connection con = DBConnection.getConnection();
+	         PreparedStatement ps = con.prepareStatement(query)) {
+	        ps.setInt(1, qid);
+	        ResultSet rs = ps.executeQuery();
+
+	        if (rs.next()) {
+	            stats.setTotalAttempts(rs.getInt("total"));
+	            stats.setHighestScore(rs.getInt("maxScore"));
+	            stats.setLowestScore(rs.getInt("minScore"));
+	            stats.setAverageScore(rs.getDouble("avgScore"));
+	        }
+	        rs.close();
+	        System.out.println("[ResultsDAO] Quiz statistics fetched successfully for quiz ID: " + qid);
+	        return stats;
+
+	    } catch (SQLException e) {
+	        System.out.println("[ResultsDAO] Database error while fetching quiz stats: " + e.getMessage());
+	        e.printStackTrace();
+	    } catch (Exception e) {
+	        System.out.println("[ResultsDAO] Some error occurred while fetching stats for quiz: Q" + qid + ": " + e.getMessage());
+	        e.printStackTrace();
+	    }
+
+	    return null;
+	}
+
+
 
 	
 	

@@ -25,6 +25,9 @@ public class CreateQuizServlet  extends HttpServlet{
 		String quiztitle=req.getParameter("quizTitle");
 		String quizsubject=req.getParameter("quizSubject");
 		String batch[]=req.getParameterValues("batch");
+		int duration = Integer.parseInt(req.getParameter("quizDuration"));
+		
+
 		
 		HttpSession session = req.getSession(false);
 		if (session == null || session.getAttribute("currentTeacher") == null) {
@@ -37,6 +40,7 @@ public class CreateQuizServlet  extends HttpServlet{
 		q.setTitle(quiztitle);
 		q.setSubject(quizsubject);
 		q.setTid(tid);
+		q.setDuration(duration);
 		
 		QuizDAO qd= new QuizDAO();
 		int createdQuizId=qd.addQuiz(q);

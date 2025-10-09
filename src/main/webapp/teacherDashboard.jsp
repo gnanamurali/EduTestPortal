@@ -23,6 +23,7 @@
 <ul>
 	<li><a href="createQuiz.jsp">Create a New Quiz</a></li>
 	<li><a href="viewQuizzes">View your Quizzes</a></li>
+	<li><a href="teacherViewResult">View Results</a></li>
 </ul>
 </div>
 </body>

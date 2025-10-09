@@ -11,9 +11,22 @@ public class Result {
 	private Timestamp takenAt;
 	private String quizTitle;
 	private String quizSubject;
-
+	private String studentName;
+	private String studentBatch;
 	
 	
+	public String getStudentName() {
+		return studentName;
+	}
+	public void setStudentName(String studentName) {
+		this.studentName = studentName;
+	}
+	public String getStudentBatch() {
+		return studentBatch;
+	}
+	public void setStudentBatch(String studentBatch) {
+		this.studentBatch = studentBatch;
+	}
 	public int getRid() {
 		return rid;
 	}

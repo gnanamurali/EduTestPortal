@@ -10,7 +10,8 @@
 <body>
 	<header style="text-align:right;"><a href="logout">Logout</a></header>
 	<h1>Welcome ${currentStudent.name}</h1><br>
-	<a href="availableQuizzes">View Available Quizzes</a>
+	<a href="availableQuizzes">View Available Quizzes</a><br>
+	<a href="viewResult">View your Results</a>
 	
 </body>
 </html>

@@ -52,7 +52,7 @@ CREATE TABLE `questions` (
   PRIMARY KEY (`QUE_ID`),
   KEY `QID` (`QID`),
   CONSTRAINT `questions_ibfk_1` FOREIGN KEY (`QID`) REFERENCES `quizzes` (`QID`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -69,7 +69,7 @@ CREATE TABLE `quiz_batches` (
   PRIMARY KEY (`ID`),
   KEY `QID` (`QID`),
   CONSTRAINT `quiz_batches_ibfk_1` FOREIGN KEY (`QID`) REFERENCES `quizzes` (`QID`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -85,10 +85,11 @@ CREATE TABLE `quizzes` (
   `SUBJECT` varchar(100) DEFAULT NULL,
   `TID` int DEFAULT NULL,
   `CREATED_AT` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `DURATION` int DEFAULT '10',
   PRIMARY KEY (`QID`),
   KEY `TID` (`TID`),
   CONSTRAINT `quizzes_ibfk_1` FOREIGN KEY (`TID`) REFERENCES `teachers` (`TID`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=201 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=211 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -109,7 +110,7 @@ CREATE TABLE `results` (
   KEY `QID` (`QID`),
   CONSTRAINT `results_ibfk_1` FOREIGN KEY (`SID`) REFERENCES `students` (`SID`) ON DELETE CASCADE,
   CONSTRAINT `results_ibfk_2` FOREIGN KEY (`QID`) REFERENCES `quizzes` (`QID`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -124,7 +125,7 @@ CREATE TABLE `students` (
   `NAME` varchar(100) NOT NULL,
   `EMAIL` varchar(100) NOT NULL,
   `PHONE` varchar(15) NOT NULL,
-  `PASSWORD` varchar(255) NOT NULL,
+  `PASSWORD` varchar(60) NOT NULL,
   `DEPARTMENT` varchar(50) DEFAULT NULL,
   `YEAR_OF_STUDY` int DEFAULT NULL,
   `BATCH` enum('B1','B2','B3') DEFAULT NULL,
@@ -132,7 +133,7 @@ CREATE TABLE `students` (
   PRIMARY KEY (`SID`),
   UNIQUE KEY `EMAIL` (`EMAIL`),
   UNIQUE KEY `PHONE` (`PHONE`)
-) ENGINE=InnoDB AUTO_INCREMENT=1001 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1004 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -147,13 +148,13 @@ CREATE TABLE `teachers` (
   `NAME` varchar(100) NOT NULL,
   `EMAIL` varchar(100) NOT NULL,
   `PHONE` varchar(15) NOT NULL,
-  `PASSWORD` varchar(255) NOT NULL,
+  `PASSWORD` varchar(60) NOT NULL,
   `SUBJECT` varchar(100) DEFAULT NULL,
   `REGISTERED_AT` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`TID`),
   UNIQUE KEY `EMAIL` (`EMAIL`),
   UNIQUE KEY `PHONE` (`PHONE`)
-) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -165,4 +166,4 @@ CREATE TABLE `teachers` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-09-17 19:30:25
+-- Dump completed on 2025-10-10  1:04:16

@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 
 import com.EduTestPortal.db.TeacherDAO;
 import com.EduTestPortal.model.Teacher;
+import com.EduTestPortal.utils.PasswordUtil;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -26,7 +27,7 @@ public class LoginTeacherServlet extends HttpServlet{
 		TeacherDAO td=new TeacherDAO();
 		Teacher t=td.getTeacherByEmail(useremail);
 		
-		if(t!=null && t.getPassword().equals(userpass))
+		if(t!=null && PasswordUtil.verify(userpass,t.getPassword()))
 		{
 			HttpSession session =req.getSession();
 			session.setAttribute("currentTeacher", t);

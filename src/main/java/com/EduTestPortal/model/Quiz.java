@@ -9,6 +9,7 @@ public class Quiz {
 	private String subject;
 	private int tid;
 	private Timestamp createdAt;
+	private int duration;
 	
 	public int getQid() {
 		return qid;
@@ -41,6 +42,12 @@ public class Quiz {
 		this.createdAt = createdAt;
 	}
 	
+	public int getDuration() {
+	    return duration;
+	}
+	public void setDuration(int duration) {
+	    this.duration = duration;
+	}
 	
 	
 }

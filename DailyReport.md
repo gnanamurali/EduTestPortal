@@ -650,3 +650,235 @@ Added message boxes to availableQuizzes.jsp for attempt status (success/failure)
 
 Thoroughly tested end-to-end quiz attempt and score storage flow in MySQL results table.
 
+#### 
+
+#### **Day 11 (08-10-2025)**
+
+
+
+###### **Results \& Analytics – Student Side**
+
+
+
+Implemented ResultsDAO.getResultsByStudentId(int sid):
+
+
+
+Performs a JOIN between RESULTS and QUIZZES to fetch quiz title, subject, and score together.
+
+
+
+Returns a list of Result objects containing full quiz details.
+
+
+
+###### **Created ViewResultServlet:**
+
+
+
+Validates student session.
+
+
+
+Fetches all results for the logged-in student.
+
+
+
+Forwards to viewResults.jsp with name, batch, and quiz details.
+
+
+
+###### **Designed viewResults.jsp:**
+
+
+
+Displays results in a table format with columns: Quiz Title, Subject, Score, and Date.
+
+
+
+Shows “No results found” if the student hasn’t taken any quizzes yet.
+
+
+
+Added navigation links back to dashboard.
+
+
+
+###### **Bug Fixes:**
+
+
+
+Fixed ClassCastException in results.jsp by properly handling double conversion for percentage.
+
+
+
+Cleaned up redundant session attributes and improved console logging.
+
+
+
+#### **Day 12 (09-10-2025)**
+
+
+
+##### **Teacher Result Management**
+
+###### 
+
+###### **Created TeacherViewResultServlet:**
+
+
+
+Fetches all quizzes created by the logged-in teacher using QuizDAO.getQuizzesByTeacherId().
+
+
+
+Displays them in teacherViewResults.jsp table with “View Results” action link per quiz.
+
+
+
+###### **Implemented QuizResultsServlet:**
+
+
+
+Fetches all student results for a specific quiz using a new DAO method with JOIN between RESULTS, STUDENTS, and QUIZZES.
+
+
+
+Forwards data to quizResults.jsp for display.
+
+###### 
+
+###### **Designed teacherViewResults.jsp:**
+
+
+
+Table showing all quizzes (ID, title, subject, created date).
+
+
+
+Added "View Results" action for each quiz row.
+
+
+
+###### **Designed quizResults.jsp:**
+
+
+
+Table showing student-wise results (Student ID, Name, Batch, Score, Taken At).
+
+
+
+Displays “No results yet” if no students have taken the quiz.
+
+
+
+Added navigation link back to teacher dashboard.
+
+
+
+All result-related functionalities (student + teacher) were tested end-to-end.
+
+
+
+#### **Day 13 (10-10-2025)**
+
+
+
+###### **Timer + Session Persistence (Quiz Page)**
+
+
+
+Fully implemented quiz timer with session-based persistence and AJAX.
+
+
+
+**Core Features:**
+
+
+
+Timer duration fetched from QUIZZES table.
+
+
+
+Timer continues after refresh (remaining time stored in session).
+
+
+
+Answers saved automatically via AJAX to SaveAnswerServlet.
+
+
+
+Timer + answers restored via FetchQuizStateServlet.
+
+
+
+Auto-submit triggers when time expires.
+
+
+
+###### **Frontend (startQuiz.jsp + quiz.js):**
+
+
+
+Added visible countdown timer.
+
+
+
+Added auto-save and progress recovery logic.
+
+
+
+Answers preserved even after refresh.
+
+
+
+Toast feedback for “Answer Saved” shown dynamically.
+
+
+
+###### **Backend (Servlets):**
+
+
+
+StartQuizServlet: Initializes quiz session state.
+
+
+
+SaveAnswerServlet: Updates answers + remaining time in session.
+
+
+
+FetchQuizStateServlet: Returns quiz state JSON for page reload.
+
+
+
+SubmitQuizServlet: Cleans up session after quiz submission.
+
+
+
+###### **Security Enhancement**
+
+
+
+Integrated BCrypt for password hashing and verification:
+
+
+
+Added PasswordUtil.java with hash() and verify() methods.
+
+
+
+Updated registration servlets (Student + Teacher) to hash passwords before DB insert.
+
+
+
+Updated login servlets to use secure verification.
+
+
+
+Added required JARs (bcrypt-0.10.2.jar, bytes-1.5.0.jar) to WEB-INF/lib.
+
+
+
+Tested successful login and registration using bcrypt-hashed passwords.
+

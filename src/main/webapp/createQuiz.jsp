@@ -23,6 +23,10 @@
 
 		<label for="quizTitle">Quiz Title:</label>
         <input type="text" id="quizTitle" name="quizTitle" required><br><br>
+        
+        <label for="quizDuration">Duration (in minutes):</label>
+		<input type="number" id="quizDuration" name="quizDuration" min="1" value="10" required><br><br>
+        
 
         <label>Assign to Batches:</label><br>
         <input type="checkbox" name="batch" value="B1"> B1<br>

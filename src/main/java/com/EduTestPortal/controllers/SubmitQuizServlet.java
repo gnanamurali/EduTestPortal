@@ -56,6 +56,13 @@ public class SubmitQuizServlet extends HttpServlet
 				req.setAttribute("quizSubject",quiz.getSubject());
 				req.setAttribute("quizScore",score);
 				req.setAttribute("totalQuestions",questions.size());
+				session.removeAttribute("answersMap");
+				session.removeAttribute("remainingTime");
+				session.removeAttribute("quizStartTime");
+				session.removeAttribute("quizDuration");
+				System.out.println("[SubmitQuizServlet] Cleared quiz session data after submission");
+
+
 				RequestDispatcher rd =req.getRequestDispatcher("/results.jsp");
 				rd.forward(req, resp);
 			}
