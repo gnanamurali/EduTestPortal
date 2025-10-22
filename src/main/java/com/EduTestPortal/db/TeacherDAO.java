@@ -1,5 +1,7 @@
 package com.EduTestPortal.db;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.EduTestPortal.model.Teacher;
 
@@ -88,5 +90,110 @@ public class TeacherDAO {
 		return null;
 		
 	}
+	
+	//Fetch all teachers (for admin dashboard view)
+	public List<Teacher> getAllTeachers() {
+	    List<Teacher> list = new ArrayList<>();
+	    String query = "SELECT * FROM TEACHERS ORDER BY REGISTERED_AT DESC";
+	    try (Connection con = DBConnection.getConnection();
+	         PreparedStatement ps = con.prepareStatement(query);
+	         ResultSet rs = ps.executeQuery()) {
+	        while (rs.next()) {
+	            Teacher t = extractTeacher(rs);
+	            list.add(t);
+	        }
+	    } catch (SQLException e) {
+	        System.out.println("[TeacherDAO] Error fetching all teachers: " + e.getMessage());
+	        e.printStackTrace();
+	    }
+	    return list;
+	}
+
+	//Fetch single teacher by ID (for edit page)
+	public Teacher getTeacherById(int tid) {
+	    Teacher t = null;
+	    String query = "SELECT * FROM TEACHERS WHERE TID = ?";
+	    try (Connection con = DBConnection.getConnection();
+	         PreparedStatement ps = con.prepareStatement(query)) {
+	        ps.setInt(1, tid);
+	        ResultSet rs = ps.executeQuery();
+	        if (rs.next()) {
+	            t = extractTeacher(rs);
+	        }
+	        rs.close();
+	    } catch (SQLException e) {
+	        System.out.println("[TeacherDAO] Error fetching teacher by ID: " + e.getMessage());
+	        e.printStackTrace();
+	    }
+	    return t;
+	}
+
+	
+	//Update teacher details (non-password) for admin
+	public boolean updateTeacher(Teacher t) {
+	    String query = "UPDATE TEACHERS SET NAME=?, EMAIL=?, PHONE=?, SUBJECT=? WHERE TID=?";
+	    try (Connection con = DBConnection.getConnection();
+	         PreparedStatement ps = con.prepareStatement(query)) {
+	        ps.setString(1, t.getName());
+	        ps.setString(2, t.getEmail());
+	        ps.setString(3, t.getPhone());
+	        ps.setString(4, t.getSubject());
+	        ps.setInt(5, t.getTid());
+	        return ps.executeUpdate() > 0;
+	    } catch (SQLException e) {
+	        System.out.println("[TeacherDAO] Error updating teacher: " + e.getMessage());
+	        e.printStackTrace();
+	    }
+	    return false;
+	}
+
+	
+	//Delete teacher by ID
+	public boolean deleteTeacher(int tid) {
+	    String query = "DELETE FROM TEACHERS WHERE TID = ?";
+	    try (Connection con = DBConnection.getConnection();
+	         PreparedStatement ps = con.prepareStatement(query)) {
+	        ps.setInt(1, tid);
+	        return ps.executeUpdate() > 0;
+	    } catch (SQLException e) {
+	        System.out.println("[TeacherDAO] Error deleting teacher: " + e.getMessage());
+	        e.printStackTrace();
+	    }
+	    return false;
+	}
+
+	
+	//Update teacher profile including password (for teacher dashboard edit profile)
+	public boolean updateTeacherWithPassword(Teacher t) {
+	    String query = "UPDATE TEACHERS SET NAME=?, EMAIL=?, PHONE=?, PASSWORD=?, SUBJECT=? WHERE TID=?";
+	    try (Connection con = DBConnection.getConnection();
+	         PreparedStatement ps = con.prepareStatement(query)) {
+	        ps.setString(1, t.getName());
+	        ps.setString(2, t.getEmail());
+	        ps.setString(3, t.getPhone());
+	        ps.setString(4, t.getPassword()); // bcrypt-hashed before calling this
+	        ps.setString(5, t.getSubject());
+	        ps.setInt(6, t.getTid());
+	        return ps.executeUpdate() > 0;
+	    } catch (SQLException e) {
+	        System.out.println("[TeacherDAO] Error updating teacher with password: " + e.getMessage());
+	        e.printStackTrace();
+	    }
+	    return false;
+	}
+
+	
+	public int getTeacherCount() {
+	    String query = "SELECT COUNT(*) FROM TEACHERS";
+	    try (Connection con = DBConnection.getConnection();
+	         PreparedStatement ps = con.prepareStatement(query);
+	         ResultSet rs = ps.executeQuery()) {
+	        if (rs.next()) return rs.getInt(1);
+	    } catch (SQLException e) {
+	        System.out.println("[TeacherDAO] Error fetching teacher count: " + e.getMessage());
+	    }
+	    return 0;
+	}
+
 
 }

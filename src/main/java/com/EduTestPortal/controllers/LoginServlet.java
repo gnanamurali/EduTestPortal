@@ -30,6 +30,8 @@ public class LoginServlet extends HttpServlet {
 		if(s!=null && PasswordUtil.verify(userpass,s.getPassword()))
 		{
 			HttpSession session =req.getSession();
+			session.removeAttribute("currentAdmin");
+			session.removeAttribute("currentTeacher");
 			session.setAttribute("currentStudent", s);
 			System.out.println("student found");
 			RequestDispatcher rd=req.getRequestDispatcher("/studentDashboard.jsp");

@@ -1,0 +1,124 @@
+@charset "UTF-8";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ---------- ROOT VARIABLES ---------- */
+:root {
+  --primary-color: #6c63ff; /* purple */
+  --accent-color: #e0e0ff;
+  --bg-color: #f5f5f7;
+  --text-color: #1e1e2f;
+  --border-color: #dcdce6;
+  --radius: 8px;
+  --transition: all 0.25s ease-in-out;
+  --font-main: 'Poppins', 'Segoe UI', sans-serif;
+}
+
+/* ---------- BASE STYLES ---------- */
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5 {
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 0.5em;
+}
+
+/* Links */
+a {
+  text-decoration: none;
+  color: var(--primary-color);
+  transition: var(--transition);
+}
+
+/* Paragraphs */
+p {
+  margin-bottom: 1em;
+}
+
+/* Containers (for page content) */
+.container {
+  flex: 1;
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: var(--radius);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+
+/* ---------- NAVBAR ---------- */
+.navbar {
+  background-color: var(--primary-color);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 64px;
+  padding: 0 2rem; /* current padding gives space on both sides */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: -40px; /* shift it slightly left */
+}
+.logo img {
+  height: 60px;              /* was 40px — increased */
+  width: auto;
+  transform: scale(0.8);
+  object-fit: contain;
+  vertical-align: middle;
+  margin: 2px 0;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.2rem;
+  flex-wrap: nowrap;       /* keep one line */
+  white-space: nowrap;     /* prevent wrapping */
+}
+.nav-links li { list-style: none; }
+
+.nav-links a {
+  color: white;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: var(--radius);
+  transition: var(--transition);
+}
+
+/* On hover */
+.nav-links a:hover {
+  background-color: white;
+  color: black;              /* Change text to black */
+  font-weight: 600;          /* Slightly bolder */
+}
+
+
+
+
+

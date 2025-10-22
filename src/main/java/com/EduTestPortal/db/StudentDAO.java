@@ -2,6 +2,8 @@ package com.EduTestPortal.db;
 
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.EduTestPortal.model.Student;
 
@@ -95,6 +97,162 @@ public class StudentDAO {
 
 	}
 	
+	//Fetch all students (for admin dashboard view)
+	public List<Student> getAllStudents() {
+	    List<Student> list = new ArrayList<>();
+	    String query = "SELECT * FROM STUDENTS ORDER BY registered_at DESC";
+	    try (Connection con = DBConnection.getConnection();
+	         PreparedStatement ps = con.prepareStatement(query);
+	         ResultSet rs = ps.executeQuery()) {
+	        while (rs.next()) {
+	            Student s = new Student();
+	            s.setSid(rs.getInt("sid"));
+	            s.setName(rs.getString("name"));
+	            s.setEmail(rs.getString("email"));
+	            s.setPhone(rs.getString("phone"));
+	            s.setDepartment(rs.getString("department"));
+	            s.setYearOfStudy(rs.getInt("year_of_study"));
+	            s.setBatch(rs.getString("batch"));
+	            s.setRegisteredAt(rs.getTimestamp("registered_at"));
+	            list.add(s);
+	        }
+	    } catch (SQLException e) {
+	        System.out.println("[StudentDAO] Error fetching all students: " + e.getMessage());
+	        e.printStackTrace();
+	    }
+	    return list;
+	}
+	
+	
+	//Fetch single student by ID (for edit page)
+	public Student getStudentById(int sid) {
+	    Student s = null;
+	    String query = "SELECT * FROM STUDENTS WHERE SID = ?";
+	    try (Connection con = DBConnection.getConnection();
+	         PreparedStatement ps = con.prepareStatement(query)) {
+	        ps.setInt(1, sid);
+	        ResultSet rs = ps.executeQuery();
+	        if (rs.next()) {
+	            s = new Student();
+	            s.setSid(rs.getInt("sid"));
+	            s.setName(rs.getString("name"));
+	            s.setEmail(rs.getString("email"));
+	            s.setPhone(rs.getString("phone"));
+	            s.setDepartment(rs.getString("department"));
+	            s.setYearOfStudy(rs.getInt("year_of_study"));
+	            s.setBatch(rs.getString("batch"));
+	            s.setRegisteredAt(rs.getTimestamp("registered_at"));
+	        }
+	        rs.close();
+	    } catch (SQLException e) {
+	        System.out.println("[StudentDAO] Error fetching student by ID: " + e.getMessage());
+	        e.printStackTrace();
+	    }
+	    return s;
+	}
+	
+	//Update student details (non-password fields)
+	public boolean updateStudent(Student s) {
+	    String query = "UPDATE STUDENTS SET NAME=?, EMAIL=?, PHONE=?, DEPARTMENT=?, YEAR_OF_STUDY=?, BATCH=? WHERE SID=?";
+	    try (Connection con = DBConnection.getConnection();
+	         PreparedStatement ps = con.prepareStatement(query)) {
+	        ps.setString(1, s.getName());
+	        ps.setString(2, s.getEmail());
+	        ps.setString(3, s.getPhone());
+	        ps.setString(4, s.getDepartment());
+	        ps.setInt(5, s.getYearOfStudy());
+	        ps.setString(6, s.getBatch());
+	        ps.setInt(7, s.getSid());
+	        return ps.executeUpdate() > 0;
+	    } catch (SQLException e) {
+	        System.out.println("[StudentDAO] Error updating student: " + e.getMessage());
+	        e.printStackTrace();
+	    }
+	    return false;
+	}
+	
+	//Delete student by ID
+	public boolean deleteStudent(int sid) {
+	    String query = "DELETE FROM STUDENTS WHERE SID = ?";
+	    try (Connection con = DBConnection.getConnection();
+	         PreparedStatement ps = con.prepareStatement(query)) {
+	        ps.setInt(1, sid);
+	        return ps.executeUpdate() > 0;
+	    } catch (SQLException e) {
+	        System.out.println("[StudentDAO] Error deleting student: " + e.getMessage());
+	        e.printStackTrace();
+	    }
+	    return false;
+	}
+	
+	//Update student profile including password (for Student Dashboard Edit Profile)
+	public boolean updateStudentWithPassword(Student s) {
+	    String query = "UPDATE STUDENTS SET NAME=?, EMAIL=?, PHONE=?, PASSWORD=?, DEPARTMENT=?, YEAR_OF_STUDY=?, BATCH=? WHERE SID=?";
+	    try (Connection con = DBConnection.getConnection();
+	         PreparedStatement ps = con.prepareStatement(query)) {
+	        ps.setString(1, s.getName());
+	        ps.setString(2, s.getEmail());
+	        ps.setString(3, s.getPhone());
+	        ps.setString(4, s.getPassword());  // <-- bcrypt-hashed before calling this method
+	        ps.setString(5, s.getDepartment());
+	        ps.setInt(6, s.getYearOfStudy());
+	        ps.setString(7, s.getBatch());
+	        ps.setInt(8, s.getSid());
+	        return ps.executeUpdate() > 0;
+	    } catch (SQLException e) {
+	        System.out.println("[StudentDAO] Error updating student with password: " + e.getMessage());
+	        e.printStackTrace();
+	    }
+	    return false;
+	}
+	
+	
+	//Fetch students by batch (for filtering)
+	public List<Student> getStudentsByBatch(String batch) {
+	    List<Student> list = new ArrayList<>();
+	    String query = "SELECT * FROM STUDENTS WHERE BATCH = ? ORDER BY registered_at DESC";
+	    try (Connection con = DBConnection.getConnection();
+	         PreparedStatement ps = con.prepareStatement(query)) {
+	        ps.setString(1, batch);
+	        ResultSet rs = ps.executeQuery();
+	        while (rs.next()) {
+	            Student s = new Student();
+	            s.setSid(rs.getInt("sid"));
+	            s.setName(rs.getString("name"));
+	            s.setEmail(rs.getString("email"));
+	            s.setPhone(rs.getString("phone"));
+	            s.setDepartment(rs.getString("department"));
+	            s.setYearOfStudy(rs.getInt("year_of_study"));
+	            s.setBatch(rs.getString("batch"));
+	            s.setRegisteredAt(rs.getTimestamp("registered_at"));
+	            list.add(s);
+	        }
+	        rs.close();
+	    } catch (SQLException e) {
+	        System.out.println("[StudentDAO] Error fetching students by batch: " + e.getMessage());
+	        e.printStackTrace();
+	    }
+	    return list;
+	}
+	
+	
+	public int getStudentCount() {
+	    String query = "SELECT COUNT(*) FROM STUDENTS";
+	    try (Connection con = DBConnection.getConnection();
+	         PreparedStatement ps = con.prepareStatement(query);
+	         ResultSet rs = ps.executeQuery()) {
+	        if (rs.next()) return rs.getInt(1);
+	    } catch (SQLException e) {
+	        System.out.println("[StudentDAO] Error fetching student count: " + e.getMessage());
+	    }
+	    return 0;
+	}
+
+
+
+
+
+
 	
 	
 }

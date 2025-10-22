@@ -1,0 +1,420 @@
+/* ===============================
+   GLOBAL PAGE CONTAINER
+================================= */
+.page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 0;
+  background-color: #f6f6f9;
+  min-height: 100vh;
+}
+
+/* ===============================
+   CARD WRAPPER
+================================= */
+.content-card {
+  background: #ffffff;
+  width: 88%;
+  padding: 40px 50px;
+  border-radius: 16px;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+  margin-bottom: 30px;
+  transition: all 0.3s ease;
+}
+
+.content-card:hover {
+  transform: translateY(-3px);
+}
+
+/* ===============================
+   HEADINGS
+================================= */
+h1 {
+  color: #5a4fff;
+  font-weight: 600;
+  text-align: left;
+  margin-bottom: 30px;
+  font-size: 1.9rem;
+}
+
+/* ===============================
+   SUCCESS MESSAGES
+================================= */
+.success-msg {
+  background-color: #e8f5e9;
+  color: #1b5e20;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 500;
+  margin-bottom: 18px;
+  width: fit-content;
+  border-left: 4px solid #43a047;
+}
+
+/* ===============================
+   TABLE STYLING
+================================= */
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  text-align: left;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.styled-table thead tr {
+  background-color: #6c63ff;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.9rem;
+}
+
+.styled-table th,
+.styled-table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.styled-table tbody tr:nth-child(even) {
+  background-color: #f9f8ff;
+}
+
+.styled-table tbody tr:hover {
+  background-color: #f1f0ff;
+  transition: background 0.2s ease;
+}
+
+.no-data {
+  text-align: center;
+  font-style: italic;
+  color: #666;
+  padding: 20px;
+}
+
+/* ===============================
+   BUTTON STYLES
+================================= */
+.btn {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+  color: white;
+  transition: all 0.25s ease;
+  text-align: center;
+  min-width: 80px;
+}
+
+/* Individual Button Styles */
+.edit-btn {
+  background-color: #6c63ff;
+}
+.edit-btn:hover {
+  background-color: #584dff;
+  transform: translateY(-2px);
+}
+
+.manage-btn {
+  background-color: #007bff;
+}
+.manage-btn:hover {
+  background-color: #0069d9;
+  transform: translateY(-2px);
+}
+
+.delete-btn {
+  background-color: #ff4d4d;
+}
+.delete-btn:hover {
+  background-color: #d93636;
+  transform: translateY(-2px);
+}
+
+.show-btn {
+  background-color: #3498db;
+}
+.show-btn:hover {
+  background-color: #2d83c4;
+  transform: translateY(-2px);
+}
+
+.hide-btn {
+  background-color: #9b59b6;
+}
+.hide-btn:hover {
+  background-color: #8e44ad;
+  transform: translateY(-2px);
+}
+
+.view-btn {
+  background-color: #6c63ff;
+}
+.view-btn:hover {
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid #6c63ff;
+  transform: translateY(-2px);
+}
+
+/* ===============================
+   BACK BUTTON
+================================= */
+.back-btn-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.back-btn {
+  display: inline-block;
+  background-color: #6c63ff;
+  color: #ffffff;
+  padding: 12px 28px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid #6c63ff;
+  box-shadow: 0 6px 15px rgba(108, 99, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+/* ===============================
+   RESPONSIVE TABLE ADJUSTMENTS
+================================= */
+@media (max-width: 768px) {
+  .content-card {
+    width: 95%;
+    padding: 25px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .styled-table th,
+  .styled-table td {
+    padding: 10px 12px;
+  }
+
+  .btn {
+    font-size: 0.8rem;
+    padding: 5px 10px;
+  }
+
+  .back-btn {
+    padding: 10px 20px;
+  }
+}
+
+/* ===============================
+   VIEW RESULTS BUTTON COLOR
+================================= */
+.result-btn {
+  background-color: #5b9df9; /* Cool Blue */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.result-btn:hover {
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid #5b9df9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(91, 157, 249, 0.25);
+}
+
+/* ===============================
+   MULTIPLE BUTTON CONTAINER
+================================= */
+.button-group {
+  text-align: center;
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+/* ===============================
+   SECONDARY BUTTON STYLE
+================================= */
+.secondary-btn {
+  background-color: #6c63ff; /* Matching purple */
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 25px;
+  text-decoration: none;
+  font-weight: 500;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.secondary-btn:hover {
+  background-color: #ffffff;
+  color: #000;
+  border: 1px solid #6c63ff;
+  box-shadow: 0 5px 15px rgba(108, 99, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+/* === STUDENT QUIZ PAGE === */
+.action-start {
+  background-color: #4CAF50;
+}
+
+.action-start:hover {
+  background-color: #3e8e41;
+  color: white;
+  transform: translateY(-1px);
+}
+
+/* Headings match the dashboard accent */
+.content-card h1,
+.page-title {
+  color: #5a4fff;
+  font-weight: 700;
+}
+
+/* Performance badges */
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: .2px;
+  color: #fff;
+}
+.badge-excellent { background: #248a3d; }  /* green */
+.badge-good      { background: #2e7dd7; }  /* blue */
+.badge-warn      { background: #e19a00; }  /* amber */
+.badge-bad       { background: #e04646; }  /* red */
+
+/* Two centered primary buttons under the card */
+.back-btn-row {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+/* ===============================
+   START QUIZ BUTTON STYLE
+================================= */
+.start-btn {
+  background-color: #6c63ff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 8px rgba(108, 99, 255, 0.25);
+}
+
+.start-btn:hover {
+  background-color: #ffffff;
+  color: #000;
+  border: 1px solid #6c63ff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(108, 99, 255, 0.4);
+}
+
+/* ===============================
+   CONFIRMATION POPUP STYLE
+================================= */
+.confirm-box {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  animation: fadeIn 0.2s ease-in;
+}
+
+.confirm-content {
+  background: #fff;
+  padding: 30px 40px;
+  border-radius: 14px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  animation: popIn 0.25s ease;
+}
+
+.confirm-content h3 {
+  margin-bottom: 10px;
+  color: #5a4fff;
+  font-size: 1.4rem;
+}
+
+.confirm-content p {
+  margin-bottom: 20px;
+  color: #444;
+}
+
+.confirm-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.confirm-actions button {
+  border: none;
+  border-radius: 6px;
+  padding: 8px 18px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.confirm-yes {
+  background-color: #6c63ff;
+  color: white;
+}
+.confirm-yes:hover {
+  background-color: #584dff;
+}
+
+.confirm-no {
+  background-color: #e0e0e0;
+}
+.confirm-no:hover {
+  background-color: #d5d5d5;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes popIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+

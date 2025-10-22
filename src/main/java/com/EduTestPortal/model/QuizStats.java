@@ -1,41 +1,53 @@
 package com.EduTestPortal.model;
 
-public class QuizStats 
-{
-	 private int totalAttempts;
-	    private int highestScore;
-	    private int lowestScore;
-	    private double averageScore;
+public class QuizStats {
+    private int totalAttempts;
+    private int highestScore;
+    private int lowestScore;
+    private double averageScore;
 
-	    public int getTotalAttempts() {
-	        return totalAttempts;
-	    }
+    // ✅ NEW FIELD
+    private double averagePercentage;
 
-	    public void setTotalAttempts(int totalAttempts) {
-	        this.totalAttempts = totalAttempts;
-	    }
+    // Getters and Setters
+    public int getTotalAttempts() {
+        return totalAttempts;
+    }
 
-	    public int getHighestScore() {
-	        return highestScore;
-	    }
+    public void setTotalAttempts(int totalAttempts) {
+        this.totalAttempts = totalAttempts;
+    }
 
-	    public void setHighestScore(int highestScore) {
-	        this.highestScore = highestScore;
-	    }
+    public int getHighestScore() {
+        return highestScore;
+    }
 
-	    public int getLowestScore() {
-	        return lowestScore;
-	    }
+    public void setHighestScore(int highestScore) {
+        this.highestScore = highestScore;
+    }
 
-	    public void setLowestScore(int lowestScore) {
-	        this.lowestScore = lowestScore;
-	    }
+    public int getLowestScore() {
+        return lowestScore;
+    }
 
-	    public double getAverageScore() {
-	        return averageScore;
-	    }
+    public void setLowestScore(int lowestScore) {
+        this.lowestScore = lowestScore;
+    }
 
-	    public void setAverageScore(double averageScore) {
-	        this.averageScore = averageScore;
-	    }
+    public double getAverageScore() {
+        return averageScore;
+    }
+
+    public void setAverageScore(double averageScore) {
+        this.averageScore = averageScore;
+    }
+
+    
+    public double getAveragePercentage() {
+        return averagePercentage;
+    }
+
+    public void setAveragePercentage(double averagePercentage) {
+        this.averagePercentage = averagePercentage;
+    }
 }

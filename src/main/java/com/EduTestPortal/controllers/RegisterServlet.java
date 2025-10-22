@@ -43,12 +43,12 @@ public class RegisterServlet extends HttpServlet{
 		
 		if(success==true)
 		{
-			RequestDispatcher rd=req.getRequestDispatcher("/success.jsp");
+			RequestDispatcher rd=req.getRequestDispatcher("/login.jsp");
 			rd.forward(req, resp);
 		}
 		else
 		{
-			RequestDispatcher rd=req.getRequestDispatcher("/failure.jsp");
+			RequestDispatcher rd=req.getRequestDispatcher("/register.jsp");
 			rd.forward(req, resp);
 		}
 		

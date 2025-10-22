@@ -25,6 +25,7 @@ public class UpdateQuizServlet extends HttpServlet{
 		int qid=Integer.parseInt(req.getParameter("qid"));
 		String title=req.getParameter("quizTitle");
 		String subject=req.getParameter("quizSubject");
+		int duration=Integer.parseInt(req.getParameter("duration"));
 		
 		QuizDAO qd=new QuizDAO();
 		Quiz q=new Quiz();
@@ -32,6 +33,7 @@ public class UpdateQuizServlet extends HttpServlet{
 		q.setQid(qid);
 		q.setTitle(title);
 		q.setSubject(subject);
+		q.setDuration(duration);
 		
 		boolean update=qd.updateQuiz(q);
 		

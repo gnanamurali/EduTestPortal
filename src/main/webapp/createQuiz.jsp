@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
- <%
-    
+
+<%
     if (session.getAttribute("currentTeacher") == null) {
         response.sendRedirect("teacherLogin.jsp");
         return;
@@ -12,28 +11,52 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Create new quiz ${currentTeacher.name}</title>
+<title>Create New Quiz | ${currentTeacher.name}</title>
+<link rel="stylesheet" href="CSS/formPages.css">
 </head>
+
 <body>
-	${message}<br>
-	<h1>New quiz by ${currentTeacher.name}</h1>
-	<form action="createQuiz" method="post">
-        <label for="quizSub">Quiz Subject:</label>
-        <input type="text" name="quizSubject" value="${currentTeacher.subject}" readonly ><br><br>
+  <jsp:include page="/includes/header.jsp" />
 
-		<label for="quizTitle">Quiz Title:</label>
-        <input type="text" id="quizTitle" name="quizTitle" required><br><br>
-        
-        <label for="quizDuration">Duration (in minutes):</label>
-		<input type="number" id="quizDuration" name="quizDuration" min="1" value="10" required><br><br>
-        
+  <div class="page-container">
+    <div class="content-card">
+      <h1 class="page-title">New Quiz by ${currentTeacher.name}</h1>
 
-        <label>Assign to Batches:</label><br>
-        <input type="checkbox" name="batch" value="B1"> B1<br>
-        <input type="checkbox" name="batch" value="B2"> B2<br>
-        <input type="checkbox" name="batch" value="B3"> B3<br><br>
+      <c:if test="${not empty message}">
+        <div class="success-msg">${message}</div>
+      </c:if>
 
-        <input type="submit" value="Create Quiz">
-	</form>
+      <form action="createQuiz" method="post" class="styled-form">
+        <div class="form-group">
+          <label for="quizSub">Quiz Subject</label>
+          <input type="text" name="quizSubject" value="${currentTeacher.subject}" readonly>
+        </div>
+
+        <div class="form-group">
+          <label for="quizTitle">Quiz Title</label>
+          <input type="text" id="quizTitle" name="quizTitle" placeholder="Enter quiz title" required>
+        </div>
+
+        <div class="form-group">
+          <label for="quizDuration">Duration (in minutes)</label>
+          <input type="number" id="quizDuration" name="quizDuration" min="1" value="10" required>
+        </div>
+
+        <div class="form-group">
+          <label>Assign to Batches</label>
+          <div class="checkbox-group">
+            <label><input type="checkbox" name="batch" value="B1"> B1</label>
+            <label><input type="checkbox" name="batch" value="B2"> B2</label>
+            <label><input type="checkbox" name="batch" value="B3"> B3</label>
+          </div>
+        </div>
+
+        <div class="btn-container">
+          <input type="submit" value="Create Quiz" class="primary-btn">
+          <a href="teacherDashboard.jsp" class="secondary-btn">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
 </body>
 </html>

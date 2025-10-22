@@ -1,0 +1,79 @@
+@charset "UTF-8";
+
+/* Layout card container */
+.teacher-dashboard {
+  width: 85%;
+  min-height: 70vh;
+  margin: 60px auto;
+  background-color: #ffffff;
+  padding: 60px 80px;
+  border-radius: 20px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Heading and subtext */
+.teacher-dashboard h1 {
+  font-size: 2.3rem;
+  font-weight: 700;
+  color: #5c54e4; /* brand purple */
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+}
+
+.teacher-dashboard p {
+  color: #555;
+  font-size: 1.1rem;
+  margin-bottom: 45px;
+}
+
+/* Buttons layout */
+.teacher-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+/* Action buttons */
+.action-btn {
+  background-color: #6c63ff;
+  color: white;
+  padding: 15px 32px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.05rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(108, 99, 255, 0.3);
+}
+
+.action-btn:hover {
+  background-color: white;
+  color: #6c63ff;
+  border: 2px solid #6c63ff;
+  font-weight: 600;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(108, 99, 255, 0.4);
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .teacher-dashboard {
+    width: 95%;
+    padding: 40px 25px;
+  }
+
+  .teacher-actions {
+    gap: 20px;
+  }
+
+  .action-btn {
+    padding: 12px 20px;
+    font-size: 0.95rem;
+  }
+}
