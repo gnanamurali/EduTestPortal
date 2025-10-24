@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `edutestportal` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `edutestportal`;
 -- MySQL dump 10.13  Distrib 8.0.42, for Win64 (x86_64)
 --
 -- Host: localhost    Database: edutestportal
@@ -30,7 +32,7 @@ CREATE TABLE `admins` (
   `REGISTERED_AT` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`AID`),
   UNIQUE KEY `EMAIL` (`EMAIL`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -52,7 +54,7 @@ CREATE TABLE `questions` (
   PRIMARY KEY (`QUE_ID`),
   KEY `QID` (`QID`),
   CONSTRAINT `questions_ibfk_1` FOREIGN KEY (`QID`) REFERENCES `quizzes` (`QID`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -69,7 +71,7 @@ CREATE TABLE `quiz_batches` (
   PRIMARY KEY (`ID`),
   KEY `QID` (`QID`),
   CONSTRAINT `quiz_batches_ibfk_1` FOREIGN KEY (`QID`) REFERENCES `quizzes` (`QID`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -86,10 +88,11 @@ CREATE TABLE `quizzes` (
   `TID` int DEFAULT NULL,
   `CREATED_AT` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `DURATION` int DEFAULT '10',
+  `IS_VISIBLE` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`QID`),
   KEY `TID` (`TID`),
   CONSTRAINT `quizzes_ibfk_1` FOREIGN KEY (`TID`) REFERENCES `teachers` (`TID`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=211 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=217 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -105,12 +108,13 @@ CREATE TABLE `results` (
   `QID` int NOT NULL,
   `score` int DEFAULT NULL,
   `taken_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `percentage` double DEFAULT NULL,
   PRIMARY KEY (`RID`),
   KEY `SID` (`SID`),
   KEY `QID` (`QID`),
   CONSTRAINT `results_ibfk_1` FOREIGN KEY (`SID`) REFERENCES `students` (`SID`) ON DELETE CASCADE,
   CONSTRAINT `results_ibfk_2` FOREIGN KEY (`QID`) REFERENCES `quizzes` (`QID`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133,7 +137,7 @@ CREATE TABLE `students` (
   PRIMARY KEY (`SID`),
   UNIQUE KEY `EMAIL` (`EMAIL`),
   UNIQUE KEY `PHONE` (`PHONE`)
-) ENGINE=InnoDB AUTO_INCREMENT=1004 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1009 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -154,7 +158,7 @@ CREATE TABLE `teachers` (
   PRIMARY KEY (`TID`),
   UNIQUE KEY `EMAIL` (`EMAIL`),
   UNIQUE KEY `PHONE` (`PHONE`)
-) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=111 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -166,4 +170,4 @@ CREATE TABLE `teachers` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-10-10  1:04:16
+-- Dump completed on 2025-10-24 21:34:58
