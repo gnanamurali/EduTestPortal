@@ -75,7 +75,7 @@
         </div>
 
         <div class="back-btn-container">
-            <a href="adminDashboard.jsp" class="back-btn">← Back to Dashboard</a>
+            <a href="adminDashboard" class="back-btn">← Back to Dashboard</a>
         </div>
     </div>
 </body>

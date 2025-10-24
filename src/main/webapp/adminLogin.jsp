@@ -4,30 +4,51 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Admin Login</title>
+<title>Admin Login | EduTestPortal</title>
+<link rel="stylesheet" href="CSS/loginPages.css">
 </head>
 <body>
-    <h1>EduTestPortal Admin Login</h1>
 
-    <form action="adminLogin" method="post">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br><br>
+    <div class="login-container">
+        <div class="login-card">
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br><br>
+            <!-- Logo Section -->
+            <div class="logo-section">
+                <img src="images/edutestbackground1.png" alt="EduTestPortal Logo" class="logo">
+                <h2>Admin Login</h2>
+                <p>Access your EduTestPortal Admin Dashboard</p>
+            </div>
 
-        <input type="submit" value="Login">
-    </form>
+            <!-- Login Form -->
+            <form action="adminLogin" method="post" class="login-form">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                </div>
 
-    <%
-        String message = (String) request.getAttribute("message");
-        if (message != null) {
-    %>
-        <p style="color:red;"><%= message %></p>
-    <%
-        }
-    %>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                </div>
 
-    <p><a href="admin_register.jsp">Don’t have an account? Register here</a></p>
+                <button type="submit" class="login-btn admin-btn">Login</button>
+            </form>
+
+            <!-- Error Message -->
+            <%
+                String message = (String) request.getAttribute("message");
+                if (message != null) {
+            %>
+                <p style="color: #ff4d4d; margin-top: 10px;"><%= message %></p>
+            <%
+                }
+            %>
+
+            <div class="extra-links">
+                <a href="adminRegister.jsp">Don’t have an account? Register here</a>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>

@@ -42,7 +42,7 @@ public class AdminRegisterServlet extends HttpServlet
 	        if (added) 
 	        {
 	            req.setAttribute("message", "Admin registered successfully. Please login.");
-	            RequestDispatcher rd = req.getRequestDispatcher("/success.jsp");
+	            RequestDispatcher rd = req.getRequestDispatcher("/adminLogin.jsp");
 	            rd.forward(req, resp);
 	        } 
 	        else {

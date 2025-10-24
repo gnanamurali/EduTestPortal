@@ -15,19 +15,19 @@
       <c:when test="${not empty sessionScope.currentAdmin}">
         <li><a href="adminDashboard.jsp">Dashboard</a></li>
         <li><a href="ManageQuizzes">Manage Quizzes</a></li>
-        <li><a href="adminResults.jsp">Results</a></li>
+        <li><a href="adminprofile">Account</a></li>
       </c:when>
 
       <c:when test="${not empty sessionScope.currentTeacher}">
         <li><a href="teacherDashboard.jsp">Dashboard</a></li>
-        <li><a href="manageQuizzes.jsp">Manage Quizzes</a></li>
-        <li><a href="teacherResults.jsp">Results</a></li>
+        <li><a href="viewQuizzes">Manage Quizzes</a></li>
+        <li><a href="teacherprofile">Account</a></li>
       </c:when>
 
       <c:when test="${not empty sessionScope.currentStudent}">
         <li><a href="studentDashboard.jsp">Dashboard</a></li>
-        <li><a href="availableQuizzes.jsp">Quizzes</a></li>
-        <li><a href="studentResults.jsp">Results</a></li>
+        <li><a href="availableQuizzes">Quizzes</a></li>
+        <li><a href="studentprofile">Account</a></li>
       </c:when>
 
       <c:otherwise>

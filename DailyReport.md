@@ -882,3 +882,429 @@ Added required JARs (bcrypt-0.10.2.jar, bytes-1.5.0.jar) to WEB-INF/lib.
 
 Tested successful login and registration using bcrypt-hashed passwords.
 
+
+
+
+
+#### **Day 14 (11-10-2025)**
+
+
+
+##### **Admin Module – Setup \& Authentication**
+
+###### 
+
+###### **Created AdminDAO with core methods:**
+
+
+
+addAdmin(Admin admin) — inserts admin credentials using bcrypt hashing.
+
+
+
+getAdminByEmail(String email) — retrieves admin details for login.
+
+
+
+Built AdminRegisterServlet and adminRegister.jsp for secure registration.
+
+
+
+Implemented AdminLoginServlet with bcrypt verification.
+
+
+
+###### Added AdminDashboardServlet and adminDashboard.jsp:
+
+
+
+Displays summary stats — total students, teachers, and quizzes.
+
+
+
+Links to “Manage Students,” “Manage Teachers,” and “Manage Quizzes.”
+
+
+
+Added proper session handling and redirection to prevent direct dashboard access without login.
+
+
+
+#### **Day 14 (11-10-2025)**
+
+##### Admin Module – Setup \& Authentication
+
+
+
+###### Created AdminDAO with core methods:
+
+
+
+addAdmin(Admin admin) — inserts admin credentials using bcrypt hashing.
+
+
+
+getAdminByEmail(String email) — retrieves admin details for login.
+
+
+
+Built AdminRegisterServlet and adminRegister.jsp for secure registration.
+
+
+
+Implemented AdminLoginServlet with bcrypt verification.
+
+
+
+###### **Added AdminDashboardServlet and adminDashboard.jsp:**
+
+
+
+Displays summary stats — total students, teachers, and quizzes.
+
+
+
+Links to “Manage Students,” “Manage Teachers,” and “Manage Quizzes.”
+
+
+
+Added proper session handling and redirection to prevent direct dashboard access without login.
+
+
+
+
+
+#### Day 15 (12-10-2025)
+
+##### Admin – Manage Students
+
+
+
+Implemented ManageStudentsServlet to fetch and display all student details.
+
+
+
+###### Created manageStudents.jsp with search/filter by batch and actions:
+
+
+
+Edit, Delete, and View Results for each student.
+
+
+
+Added success/error message display using JSTL.
+
+
+
+Implemented delete functionality with confirmation dialogs.
+
+
+
+Ensured that deleting a student also cascades results removal in DB.
+
+
+
+##### Admin – Manage Teachers
+
+
+
+Created ManageTeachersServlet + manageTeachers.jsp.
+
+
+
+Displays all teachers with options to edit, delete, or view created quizzes.
+
+
+
+Ensured full authorization control so only admins can modify teacher data.
+
+
+
+
+
+#### **Day 16 (13-10-2025)**
+
+##### **Admin – Manage Quizzes**
+
+
+
+Created ManageQuizzes.jsp for viewing and managing all quizzes.
+
+
+
+###### **Added visibility toggle system:**
+
+
+
+Created ToggleQuizVisibilityServlet shared between Teacher \& Admin.
+
+
+
+Updates IS\_VISIBLE in QUIZZES table.
+
+
+
+Redirects dynamically based on user role (admin or teacher).
+
+
+
+Integrated delete functionality using shared DeleteQuizServlet.
+
+
+
+Added link to “View Results” for any quiz directly from admin panel.
+
+
+
+#### 
+
+#### **Day 17 (14-10-2025)**
+
+##### **Shared Results System**
+
+
+
+Enhanced QuizResultsServlet to support both Admin and Teacher roles.
+
+
+
+Added userRole attribute to differentiate behavior in JSP.
+
+
+
+Updated quizResults.jsp to dynamically show correct navigation options:
+
+
+
+Admin → Back to Manage Quizzes / Dashboard
+
+
+
+Teacher → Back to View Quizzes / Dashboard
+
+
+
+Unified DAO logic for fetching quiz results accessible to both roles.
+
+
+
+
+
+##### **Day 18 (15-10-2025)**
+
+##### **Admin Dashboard Enhancements**
+
+
+
+###### **Refined adminDashboard.jsp layout:**
+
+
+
+Clean summary cards showing Students, Teachers, Quizzes, and Active Quizzes.
+
+
+
+Added quick navigation buttons for key management pages.
+
+
+
+Integrated consistent message display using shared header and message boxes.
+
+
+
+Added access control to prevent teacher/student dashboard access by admins.
+
+
+
+#### **Day 19 (16-10-2025)**
+
+##### **Quiz Visibility \& Filtering Improvements**
+
+
+
+Teachers can now mark their quizzes as “hidden” while still editable.
+
+
+
+Students only see visible quizzes in AvailableQuizzesServlet via SQL filter:
+
+
+
+SELECT \* FROM QUIZZES WHERE IS\_VISIBLE = 1
+
+
+
+Confirmed that hidden quizzes are excluded from student listings but remain viewable by teacher/admin.
+
+
+
+#### **Day 20 (17-10-2025)**
+
+###### **Global Design Overhaul**
+
+
+
+Introduced layout.css and header.jsp for unified design structure.
+
+
+
+Added sticky navbar with logo (edutestbackground1.png) and purple theme (#6c63ff).
+
+
+
+Defined container and dashboard sections with subtle shadows and rounded corners.
+
+
+
+All dashboards (student, teacher, admin) now share consistent layout via header.jsp.
+
+
+
+#### **Day 21 (18-10-2025)**
+
+###### **Background Integration \& Visual Effects**
+
+
+
+Set global background using bgimg1.png through layout.css:
+
+
+
+Added linear-gradient overlay for better readability.
+
+
+
+Enabled parallax scroll effect using background-attachment: fixed.
+
+
+
+Implemented glassy effect for dashboard containers using:
+
+
+
+background: rgba(255,255,255,0.9);
+
+backdrop-filter: blur(6px);
+
+
+
+#### 
+
+#### **Day 22 (19-10-2025)**
+
+###### **Table and Form Styling**
+
+
+
+Added tablePages.css and formPages.css.
+
+
+
+Styled all table-based pages (manage\*, results\*, availableQuizzes.jsp) with:
+
+
+
+Hover highlights, alternating rows, and action buttons.
+
+
+
+Styled all forms with centered card layouts and shadowed inputs.
+
+
+
+Unified color palette:
+
+
+
+Primary: #6c63ff, Accent: #5a4fff, Success: #43a047, Danger: #ff4d4d.
+
+
+
+Ensured full responsiveness for mobile devices.
+
+
+
+#### 
+
+#### **Day 23 (20-10-2025)**
+
+###### **Profile System (Student)**
+
+
+
+Added “Profile” option in student dashboard.
+
+
+
+Created studentProfile.jsp:
+
+
+
+Displays full student details.
+
+
+
+Includes Edit and Delete buttons at the bottom.
+
+
+
+Linked edit/delete with existing StudentDAO and servlet flows.
+
+
+
+Ensured session sync so updated info reflects immediately on dashboard.
+
+
+
+#### 
+
+#### **Day 24 (21-10-2025)**
+
+###### **Home Page (index.jsp) Design**
+
+
+
+Designed a proper homepage introducing EduTestPortal.
+
+
+
+Added main CTA buttons for “Student Register” and “Login”.
+
+
+
+Teacher login link placed in footer for professional layout.
+
+
+
+Header + footer styled consistently with theme.
+
+
+
+Included short description about the portal and its purpose.
+
+
+
+#### **Day 25 (24-10-2025)**
+
+###### **Final Integration \& Testing**
+
+
+
+Verified background consistency across all pages via header.jsp inclusion.
+
+
+
+Completed functional and UI testing for all modules (Student, Teacher, Admin).
+
+
+
+Fixed session timeout redirect issues and ensured logout clears all data.
+
+
+
+Final polish: adjusted spacing, text contrast, and responsive behavior.
+
+
+
+EduTestPortal is now feature-complete, secure, and visually consistent.
+

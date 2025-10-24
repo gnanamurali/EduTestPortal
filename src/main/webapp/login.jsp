@@ -4,20 +4,41 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Login</title>
+<title>Student Login | EduTestPortal</title>
+<link rel="stylesheet" href="CSS/loginPages.css">
 </head>
 <body>
-	<h1>Login to your EduTestPortal account</h1>
 
-    <form action="loginServlet" method="post">
-     <label for="userEmail">Email:</label>
-     <input type="text" id="userEmail" name="userEmail"><br><br>
+    <div class="login-container">
+        <div class="login-card">
 
-     <label for="userPass">Password:</label>
-     <input type="password" id="userPass" name="userPass"><br><br>
+            <!-- Logo -->
+            <div class="logo-section">
+                <img src="images/edutestbackground1.png" alt="EduTestPortal Logo" class="logo">
+                <h2>Student Login</h2>
+                <p>Sign in to your EduTestPortal account</p>
+            </div>
 
-     <input type="submit" value="Login">
-    </form><br>
-    <a href="register.jsp">New here Create your account</a>
+            <!-- Login Form -->
+            <form action="loginServlet" method="post" class="login-form">
+                <div class="form-group">
+                    <label for="userEmail">Email Address</label>
+                    <input type="email" id="userEmail" name="userEmail" placeholder="Enter your email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="userPass">Password</label>
+                    <input type="password" id="userPass" name="userPass" placeholder="Enter your password" required>
+                </div>
+
+                <button type="submit" class="login-btn">Login</button>
+            </form>
+
+            <div class="extra-links">
+                <a href="register.jsp">New here? Create your account</a>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>

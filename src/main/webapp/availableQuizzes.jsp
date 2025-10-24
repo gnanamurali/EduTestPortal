@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Available Quizzes</title>
+<link rel="stylesheet" href="CSS/layout.css">
 <link rel="stylesheet" href="CSS/tablePages.css">
 
 <script>

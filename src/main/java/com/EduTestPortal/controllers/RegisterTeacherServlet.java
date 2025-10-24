@@ -38,7 +38,7 @@ public class RegisterTeacherServlet extends HttpServlet {
 		
 		if (success==true)
 		{
-			RequestDispatcher rd=req.getRequestDispatcher("/success.jsp");
+			RequestDispatcher rd=req.getRequestDispatcher("/teacherLogin.jsp");
 			rd.forward(req, resp);
 			
 			

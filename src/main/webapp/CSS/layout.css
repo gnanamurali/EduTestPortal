@@ -22,13 +22,17 @@
 
 body {
   font-family: var(--font-main);
-  background-color: var(--bg-color);
+  background: 
+    linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), /* dark overlay for readability */
+    url('../images/bgimg3.png') no-repeat center center fixed;
+  background-size: cover;
   color: var(--text-color);
   line-height: 1.6;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
+
 
 /* Headings */
 h1, h2, h3, h4, h5 {

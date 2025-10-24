@@ -24,23 +24,25 @@ public class AdminLoginServlet extends HttpServlet {
 
         String adminEmail = req.getParameter("email");
         String adminPass = req.getParameter("password");
-        PrintWriter out = resp.getWriter();
+
         resp.setContentType("text/html");
+        PrintWriter out = resp.getWriter();
 
         AdminDAO dao = new AdminDAO();
         Admin admin = dao.getAdminByEmail(adminEmail);
 
         if (admin != null && PasswordUtil.verify(adminPass, admin.getPassword())) {
-            HttpSession session = req.getSession();
+            HttpSession session = req.getSession(true);
             session.removeAttribute("currentStudent");
             session.removeAttribute("currentTeacher");
+
             session.setAttribute("currentAdmin", admin);
-            System.out.println("[AdminLoginServlet] Admin authenticated successfully");
-            
-            
-            resp.sendRedirect("adminDashboard");
+            session.setAttribute("aid", admin.getAid()); // ✅ added
+
+            System.out.println("[AdminLoginServlet] Admin login successful, AID: " + admin.getAid());
+            resp.sendRedirect("adminDashboard"); // ✅ direct redirect, not /adminDashboard servlet unless you have one
         } else {
-            out.print("<h3 style='color:red;'>Email and password didn’t match</h3>");
+            out.print("<h3 style='color:red;'>Email or password didn’t match</h3>");
             RequestDispatcher rd = req.getRequestDispatcher("/adminlogin.jsp");
             rd.include(req, resp);
             System.out.println("[AdminLoginServlet] Invalid admin credentials");
