@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: edutestportal
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: DB_URL
+        value: jdbc:mysql://mysql-edutestportal.alwaysdata.net:3306/edutestportal_db
+      - key: DB_USER
+        value: 437194
+      - key: DB_PASS
+        value: edutest123
