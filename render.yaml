@@ -4,6 +4,7 @@ services:
     env: docker
     plan: free
     dockerfilePath: ./Dockerfile
+    autoDeploy: true
     envVars:
       - key: DB_URL
         value: jdbc:mysql://mysql-edutestportal.alwaysdata.net:3306/edutestportal_db
@@ -11,3 +12,7 @@ services:
         value: 437194
       - key: DB_PASS
         value: edutest123
+    healthCheckPath: /
+    disk:
+      name: data
+      mountPath: /usr/local/tomcat/webapps
