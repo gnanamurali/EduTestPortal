@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.EduTestPortal.db.StudentDAO;
 import com.EduTestPortal.model.Student;
+import com.EduTestPortal.utils.PasswordUtil;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -22,6 +23,8 @@ public class RegisterServlet extends HttpServlet{
 		String useremail=req.getParameter("userEmail");
 		String userphone=req.getParameter("userPhone");
 		String userpass=req.getParameter("userPass");
+		String hashedpass=PasswordUtil.hash(userpass);
+		System.out.println("Password hashed successfully for user: "+ useremail);
 		String userdept=req.getParameter("userDept");
 		int yos=Integer.parseInt(req.getParameter("userYos"));
 		String userbatch=req.getParameter("userBatch");
@@ -30,7 +33,7 @@ public class RegisterServlet extends HttpServlet{
 		s.setName(username);
 		s.setEmail(useremail);
 		s.setPhone(userphone);
-		s.setPassword(userpass);
+		s.setPassword(hashedpass);
 		s.setDepartment(userdept);
 		s.setYearOfStudy(yos);
 		s.setBatch(userbatch);
@@ -40,12 +43,12 @@ public class RegisterServlet extends HttpServlet{
 		
 		if(success==true)
 		{
-			RequestDispatcher rd=req.getRequestDispatcher("/success.jsp");
+			RequestDispatcher rd=req.getRequestDispatcher("/login.jsp");
 			rd.forward(req, resp);
 		}
 		else
 		{
-			RequestDispatcher rd=req.getRequestDispatcher("/failure.jsp");
+			RequestDispatcher rd=req.getRequestDispatcher("/register.jsp");
 			rd.forward(req, resp);
 		}
 		

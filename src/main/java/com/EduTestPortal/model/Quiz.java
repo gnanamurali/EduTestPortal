@@ -9,6 +9,24 @@ public class Quiz {
 	private String subject;
 	private int tid;
 	private Timestamp createdAt;
+	private int duration;
+	private boolean isVisible;
+	private String teacherName;
+	
+	
+
+	public String getTeacherName() {
+		return teacherName;
+	}
+	public void setTeacherName(String teacherName) {
+		this.teacherName = teacherName;
+	}
+	
+	public boolean isVisible() 
+	{ return isVisible; }
+	public void setVisible(boolean isVisible) 
+	{ this.isVisible = isVisible; }
+
 	
 	public int getQid() {
 		return qid;
@@ -41,6 +59,12 @@ public class Quiz {
 		this.createdAt = createdAt;
 	}
 	
+	public int getDuration() {
+	    return duration;
+	}
+	public void setDuration(int duration) {
+	    this.duration = duration;
+	}
 	
 	
 }

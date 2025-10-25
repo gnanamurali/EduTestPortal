@@ -9,8 +9,32 @@ public class Result {
 	private int sid;
 	private int score;
 	private Timestamp takenAt;
+	private String quizTitle;
+	private String quizSubject;
+	private String studentName;
+	private String studentBatch;
+	private double percentage;
 	
 	
+	public double getPercentage() 
+	{ return percentage; 
+	}
+	public void setPercentage(double percentage) 
+	{ this.percentage = percentage; 
+	}
+	
+	public String getStudentName() {
+		return studentName;
+	}
+	public void setStudentName(String studentName) {
+		this.studentName = studentName;
+	}
+	public String getStudentBatch() {
+		return studentBatch;
+	}
+	public void setStudentBatch(String studentBatch) {
+		this.studentBatch = studentBatch;
+	}
 	public int getRid() {
 		return rid;
 	}
@@ -41,7 +65,18 @@ public class Result {
 	public void setTakenAt(Timestamp takenAt) {
 		this.takenAt = takenAt;
 	}
-	
+	public String getQuizTitle() {
+		return quizTitle;
+	}
+	public void setQuizTitle(String quizTitle) {
+		this.quizTitle = quizTitle;
+	}
+	public String getQuizSubject() {
+		return quizSubject;
+	}
+	public void setQuizSubject(String quizSubject) {
+		this.quizSubject = quizSubject;
+	}
 	
 	
 

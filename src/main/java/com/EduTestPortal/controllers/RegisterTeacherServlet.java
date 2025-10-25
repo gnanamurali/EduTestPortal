@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.EduTestPortal.db.TeacherDAO;
 import com.EduTestPortal.model.Teacher;
+import com.EduTestPortal.utils.PasswordUtil;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -22,12 +23,14 @@ public class RegisterTeacherServlet extends HttpServlet {
 		String useremail=req.getParameter("userEmail");
 		String userphone=req.getParameter("userPhone");
 		String userpass=req.getParameter("userPass");
+		String hashedpass=PasswordUtil.hash(userpass);
+		System.out.println("Password hashed successfully for teacher: "+ useremail);
 		String usersub=req.getParameter("userSub");
 		Teacher t=new Teacher();
 		t.setName(username);
 		t.setEmail(useremail);
 		t.setPhone(userphone);
-		t.setPassword(userpass);
+		t.setPassword(hashedpass);
 		t.setSubject(usersub);
 		
 		TeacherDAO td=new TeacherDAO();
@@ -35,7 +38,7 @@ public class RegisterTeacherServlet extends HttpServlet {
 		
 		if (success==true)
 		{
-			RequestDispatcher rd=req.getRequestDispatcher("/success.jsp");
+			RequestDispatcher rd=req.getRequestDispatcher("/teacherLogin.jsp");
 			rd.forward(req, resp);
 			
 			

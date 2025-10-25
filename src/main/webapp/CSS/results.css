@@ -1,0 +1,87 @@
+@charset "UTF-8";
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f7f6ff;
+  margin: 0;
+  padding: 0;
+}
+
+.result-container {
+  max-width: 600px;
+  background: #fff;
+  margin: 60px auto;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.quiz-title {
+  color: #5a4fff;
+  font-size: 2rem;
+  margin-bottom: 5px;
+}
+
+.quiz-subject {
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+
+.score-card {
+  background: #f4f3ff;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.score-card h3 {
+  margin: 0;
+  font-size: 1.4rem;
+  color: #222;
+}
+
+.percentage {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 10px 0;
+}
+
+.message {
+  font-size: 1rem;
+  color: #555;
+}
+
+.btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.primary-btn {
+  background-color: #5a4fff;
+  color: white;
+}
+
+.primary-btn:hover {
+  background-color: #473dff;
+}
+
+.secondary-btn {
+  background-color: #f4f3ff;
+  color: #5a4fff;
+}
+
+.secondary-btn:hover {
+  background-color: #5a4fff;
+  color: white;
+}
